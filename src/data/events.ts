@@ -3,81 +3,77 @@ export interface ClubEvent {
   name: string
   description: string
   location: string
-  difficulty: 'Easy' | 'Moderate' | 'Hard'
   isRecurring: boolean
   /** Month name for annual/recurring events, e.g. "June" */
   month?: string
-  /** ISO date string for specific upcoming events, e.g. "2025-07-12" */
+  /** ISO date string for specific upcoming events, e.g. "2026-05-22" */
   date?: string
+  /** ISO date string for end of multi-day events */
+  endDate?: string
   tags: string[]
 }
 
 const events: ClubEvent[] = [
   {
-    id: 'mud-bogs',
-    name: 'Spring Mud Bogs',
+    id: 'memorial-rally',
+    name: 'Memorial Total Off-Road Rally',
     description:
-      'Kick off the season with a classic mud run. Open to all builds — stock rigs welcome, lockers encouraged.',
-    location: 'TBD — Central MN',
-    difficulty: 'Moderate',
-    isRecurring: true,
-    month: 'April',
-    tags: ['mud', 'spring', 'family-friendly'],
+      'Four days of open wheeling over Memorial Day weekend at IROHVSRA. ' +
+      'One of the biggest multi-day events of the season — camping on-site, mixed terrain, ' +
+      'and a full weekend to put your rig to work.',
+    location: 'IROHVSRA, Gilbert, MN',
+    isRecurring: false,
+    date: '2026-05-22',
+    endDate: '2026-05-25',
+    tags: ['camping', 'overnight', 'open-wheeling', 'memorial-weekend'],
   },
   {
-    id: 'memorial-run',
-    name: 'Memorial Weekend Run',
+    id: 'fathers-day-wheeling',
+    name: "Father's Day Weekend Wheeling",
     description:
-      'Our biggest annual gathering. Multi-day camping and wheeling over Memorial Day weekend. A club tradition since the early days.',
-    location: 'TBD — Northern MN',
-    difficulty: 'Moderate',
-    isRecurring: true,
-    month: 'May',
-    tags: ['camping', 'overnight', 'annual'],
+      'A solid Father\'s Day weekend run at Apple Valley Farms with RPM 4x4 Club. ' +
+      'Good terrain, good company — a raffle supports MN4WDA trail work.',
+    location: 'Apple Valley Farms, Chetek, WI',
+    isRecurring: false,
+    date: '2026-06-13',
+    endDate: '2026-06-14',
+    tags: ['weekend', 'raffle', 'mn4wda'],
   },
   {
-    id: 'summer-trail',
-    name: 'Summer Trail Ride',
+    id: 'crawl-for-the-cure',
+    name: 'Crawl for the Cure',
     description:
-      'A scenic mid-summer cruise through forest trails. Great for newer members and families looking for a laid-back outing.',
-    location: 'TBD — Northern MN',
-    difficulty: 'Easy',
-    isRecurring: true,
-    month: 'July',
-    tags: ['trail', 'family-friendly', 'beginner'],
+      'Four days of hard wheeling at IROHVSRA raising money for Multiple Sclerosis research. ' +
+      'Technical terrain, great cause. Recovery gear required — this one earns its name.',
+    location: 'IROHVSRA & West 40 RV Park, Gilbert, MN',
+    isRecurring: false,
+    date: '2026-07-16',
+    endDate: '2026-07-19',
+    tags: ['charity', 'technical', 'camping', 'overnight'],
   },
   {
-    id: 'rock-crawl',
-    name: 'Fall Rock Crawl',
+    id: 'labor-day-weekend',
+    name: 'Labor Day Weekend Open Wheeling',
     description:
-      'Technical rock crawling for the more experienced wheelers. Spotters available, recovery gear required.',
-    location: 'TBD — Western WI',
-    difficulty: 'Hard',
-    isRecurring: true,
-    month: 'September',
-    tags: ['rock crawl', 'technical', 'experienced'],
+      'Four days of open wheeling at IROHVSRA to close out summer. ' +
+      'Camping on-site, all skill levels, and plenty of iron range terrain to work through.',
+    location: 'IROHVSRA, Gilbert, MN',
+    isRecurring: false,
+    date: '2026-09-04',
+    endDate: '2026-09-07',
+    tags: ['camping', 'overnight', 'open-wheeling', 'labor-day'],
   },
   {
-    id: 'fall-colors',
-    name: 'Fall Colors Cruise',
+    id: 'toys-for-tots',
+    name: 'Toys for Tots Trail Ride',
     description:
-      'A relaxed end-of-season trail run to enjoy the Minnesota fall foliage before the snow flies.',
-    location: 'TBD — Northeastern MN',
-    difficulty: 'Easy',
-    isRecurring: true,
-    month: 'October',
-    tags: ['trail', 'scenic', 'family-friendly'],
-  },
-  {
-    id: 'winter-run',
-    name: 'Winter Snow Run',
-    description:
-      'For those who refuse to garage their rigs all winter. Snow wheeling in the frozen north — chains and lockers welcome.',
-    location: 'TBD — Northern MN',
-    difficulty: 'Moderate',
-    isRecurring: true,
-    month: 'January',
-    tags: ['snow', 'winter', 'cold-weather'],
+      'Two-day trail ride at Afton Apple Orchard raising toys for local kids. ' +
+      'Bring a new unwrapped toy for entry — great fall event for the whole family.',
+    location: 'Afton Apple Orchard, Hastings, MN',
+    isRecurring: false,
+    date: '2026-10-17',
+    endDate: '2026-10-18',
+    tags: ['charity', 'family-friendly', 'fall', 'toys-for-tots'],
   },
 ]
 

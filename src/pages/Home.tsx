@@ -68,8 +68,9 @@ export default function Home() {
           <div>
             <h2 className="home-join-heading">Ready to Wheel with Us?</h2>
             <p className="home-join-body">
-              The best way to join is to come out to a run. No applications, no pressure —
-              just show up, meet the crew, and see if we're the right fit for you.
+              We don't have a signup form. The best way in is to come out to a run,
+              meet the crew on the trail, and see if we're your kind of people.
+              Show up ready to wheel and you'll feel right at home.
             </p>
           </div>
           <div className="home-join-actions">

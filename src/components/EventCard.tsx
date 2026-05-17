@@ -5,23 +5,26 @@ interface Props {
   event: ClubEvent
 }
 
-const difficultyLabel: Record<ClubEvent['difficulty'], string> = {
-  Easy:     'Easy',
-  Moderate: 'Moderate',
-  Hard:     'Hard',
+function formatDate(iso: string) {
+  // Parse as local date to avoid UTC-offset day shift
+  const [year, month, day] = iso.split('-').map(Number)
+  return new Date(year, month - 1, day).toLocaleDateString('en-US', {
+    month: 'long', day: 'numeric', year: 'numeric',
+  })
 }
 
-const difficultyClass: Record<ClubEvent['difficulty'], string> = {
-  Easy:     'badge-easy',
-  Moderate: 'badge-moderate',
-  Hard:     'badge-hard',
+function formatDateShort(iso: string) {
+  const [year, month, day] = iso.split('-').map(Number)
+  return new Date(year, month - 1, day).toLocaleDateString('en-US', {
+    month: 'long', day: 'numeric',
+  })
 }
 
 export default function EventCard({ event }: Props) {
   const timing = event.date
-    ? new Date(event.date).toLocaleDateString('en-US', {
-        month: 'long', day: 'numeric', year: 'numeric',
-      })
+    ? event.endDate
+      ? `${formatDateShort(event.date)} – ${formatDate(event.endDate)}`
+      : formatDate(event.date)
     : event.month
     ? `Every ${event.month}`
     : 'Date TBD'
@@ -30,9 +33,6 @@ export default function EventCard({ event }: Props) {
     <article className="event-card">
       <div className="event-card-header">
         <div className="event-card-timing">{timing}</div>
-        <span className={`badge-difficulty ${difficultyClass[event.difficulty]}`}>
-          {difficultyLabel[event.difficulty]}
-        </span>
       </div>
 
       <h3 className="event-card-title">{event.name}</h3>

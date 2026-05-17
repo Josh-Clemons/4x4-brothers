@@ -15,8 +15,8 @@ export default function Events() {
           <p className="page-hero-label">Get Out There</p>
           <h1 className="page-hero-title">Club Events & Runs</h1>
           <p className="page-hero-subtitle">
-            We run year-round. Most events are annual traditions — check our
-            Facebook group for exact dates and details as each run approaches.
+            We run year-round. Check our Facebook group for meet-up times,
+            last-minute changes, and anything that comes up between now and the trailhead.
           </p>
         </div>
       </section>
@@ -25,7 +25,7 @@ export default function Events() {
       {upcomingEvents.length > 0 && (
         <section className="section section-light events-section">
           <div className="content-container">
-            <h2 className="events-section-heading">Upcoming Dates</h2>
+            <h2 className="events-section-heading">2026 Events</h2>
             <hr className="brand-divider" />
             <div className="events-grid">
               {upcomingEvents.map(event => (
@@ -37,21 +37,23 @@ export default function Events() {
       )}
 
       {/* ── Annual / recurring ──────────────────────────────── */}
-      <section className="section events-section" style={{ backgroundColor: 'var(--color-light)' }}>
-        <div className="content-container">
-          <h2 className="events-section-heading">Annual Runs</h2>
-          <hr className="brand-divider" />
-          <p className="events-section-body">
-            These runs happen every year. Exact dates are announced on our Facebook group
-            a few weeks before each event.
-          </p>
-          <div className="events-grid">
-            {recurringEvents.map(event => (
-              <EventCard key={event.id} event={event} />
-            ))}
+      {recurringEvents.length > 0 && (
+        <section className="section events-section" style={{ backgroundColor: 'var(--color-light)' }}>
+          <div className="content-container">
+            <h2 className="events-section-heading">Annual Runs</h2>
+            <hr className="brand-divider" />
+            <p className="events-section-body">
+              These runs happen every year. Exact dates are announced on our Facebook group
+              a few weeks before each event.
+            </p>
+            <div className="events-grid">
+              {recurringEvents.map(event => (
+                <EventCard key={event.id} event={event} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── Facebook CTA ────────────────────────────────────── */}
       <section className="section section-dark events-fb-cta">

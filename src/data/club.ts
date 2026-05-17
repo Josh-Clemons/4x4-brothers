@@ -2,43 +2,46 @@ const club = {
   name: 'Minnesota 4x4 Brothers',
   shortName: 'MN 4x4 Brothers',
   established: 1967,
-  tagline: 'Built Tough. Built Together.',
+  tagline: 'Air Down. Show Up. Wheel Clean.',
   description:
-    'The Minnesota 4x4 Brothers is an off-road club based in the great state of Minnesota. ' +
-    'We are a group of passionate four-wheel drive enthusiasts who love exploring trails, ' +
-    'getting muddy, and helping each other out on and off the trail. ' +
-    'Established in 1967, we have been a fixture in the Minnesota off-road community for decades.',
+    'The Minnesota 4x4 Brothers have been wheeling since 1967 — back when four-wheel drive ' +
+    'was a job, not a trim level. We\'re a technical off-road club: we pick our lines, ' +
+    'spot each other through the rough stuff, and leave trails in better shape than we found them. ' +
+    'If that\'s your kind of Saturday, you\'ll fit right in.',
 
   about: {
     history:
-      'The Minnesota 4x4 Brothers was founded in 1967 by a small group of off-road enthusiasts ' +
-      'who wanted to share their love of four-wheeling with like-minded Minnesotans. ' +
-      'What started as informal weekend runs has grown into one of Minnesota\'s longest-running ' +
-      'four-wheel drive clubs, with members across the state and a tradition of camaraderie ' +
-      'that has lasted generations. [More history coming soon]',
+      'The Minnesota 4x4 Brothers started in 1967 when a handful of guys with dirt on their ' +
+      'boots and lockers in their axles decided a club was long overdue. What began as informal ' +
+      'weekend runs through the Minnesota backwoods became one of the longest-running four-wheel ' +
+      'drive clubs in the state. Decades later, the faces have changed but the approach hasn\'t — ' +
+      'we find hard lines, we run them with spotters, and we recover our own. The rigs have gotten ' +
+      'bigger and the lifts have gotten taller, but the club still runs on trust, trail knowledge, ' +
+      'and a healthy respect for what\'s waiting on the other side of that ridge.',
     mission:
-      'We are dedicated to responsible off-road recreation, trail preservation, and building ' +
-      'a community where experienced wheelers and newcomers alike feel welcome.',
+      'We\'re here to wheel — hard when the terrain calls for it, smart always. We protect trail ' +
+      'access by using it responsibly, and we build the kind of community where the guy who bent ' +
+      'his Dana 44 last spring shows up first to help the new member figure out lockers this fall.',
     values: [
-      { title: 'Community', description: 'We look out for each other on the trail and off.' },
-      { title: 'Respect', description: 'Respect the land, the trails, and fellow members.' },
-      { title: 'Adventure', description: 'Push limits, try new trails, and never stop exploring.' },
-      { title: 'Stewardship', description: 'Leave trails better than we found them.' },
+      { title: 'Community',   description: 'We recover together. On the trail and off, you can count on us to show up when it counts.' },
+      { title: 'Respect',     description: 'Respect the land or lose it. We tread lightly, pack it out, and leave what we find.' },
+      { title: 'Adventure',   description: 'The comfortable line isn\'t always the right one. We push where it matters and back off when it doesn\'t.' },
+      { title: 'Stewardship', description: 'We dig water bars, pack out trash, and fight for trail access. The trail doesn\'t maintain itself.' },
     ],
   },
 
   membership: {
     howToJoin:
-      'The best way to join the 4x4 Brothers is to come out to a run first. ' +
-      'We want to meet you on the trail — show us your rig and spend a day wheeling with us. ' +
-      'After attending a run, you\'re welcome to apply for membership.',
+      'The best way in is to show up to a run. We don\'t do applications — we do trail time. ' +
+      'Come out, meet the crew, wheel your rig, and see if this is your kind of club. ' +
+      'If it is, a current member will sponsor you in.',
     requirements: [
-      'Attend at least one club run',
+      'Attend at least two club runs',
       'Be sponsored by an existing member',
       'Agree to the club code of conduct',
       'Annual dues apply after acceptance',
     ],
-    ctaText: 'Find us on Facebook to get notified about upcoming runs.',
+    ctaText: 'Follow us on Facebook — that\'s where run details and meet-up times get posted.',
   },
 
   social: {

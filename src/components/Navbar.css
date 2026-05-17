@@ -28,8 +28,9 @@
 .navbar-logo img {
   height: 36px;
   width: auto;
-  /* Words-only logo is on white — invert so it reads on dark bg */
-  filter: brightness(0) invert(1);
+  background: var(--color-white);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
 }
 
 /* ── Desktop links ─────────────────────────────────────────── */
