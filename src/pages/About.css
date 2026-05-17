@@ -105,6 +105,83 @@
   line-height: 1.6;
 }
 
+/* Board grid */
+.board-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: var(--space-sm);
+}
+
+@media (min-width: 480px) {
+  .board-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .board-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.board-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--color-red);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.board-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.board-card-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.board-card-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-dark-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board-card-body {
+  padding: 1.25rem;
+}
+
+.board-card-role {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  margin: 0 0 0.3rem;
+}
+
+.board-card-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-dark);
+  margin: 0 0 0.6rem;
+}
+
+.board-card-bio {
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* Membership list */
 .membership-list {
   list-style: none;

@@ -79,6 +79,16 @@
   color: var(--color-red);
 }
 
+/* Feedback button styled as a footer link */
+.footer-link--btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  text-align: left;
+}
+
 /* Bottom bar */
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.08);

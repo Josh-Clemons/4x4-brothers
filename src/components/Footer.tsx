@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import club from '../data/club'
 import './Footer.css'
 
-export default function Footer() {
+export default function Footer({ onOpenReport }: { onOpenReport: () => void }) {
   const year = new Date().getFullYear()
 
   return (
@@ -36,6 +36,9 @@ export default function Footer() {
           >
             Facebook Group ↗
           </a>
+          <button className="footer-link footer-link--btn" onClick={onOpenReport}>
+            Feedback
+          </button>
         </div>
       </div>
 

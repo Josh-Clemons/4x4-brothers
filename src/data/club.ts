@@ -44,6 +44,39 @@ const club = {
     ctaText: 'Follow us on Facebook — that\'s where run details and meet-up times get posted.',
   },
 
+  board: [
+    {
+      name:  'Matt Clemons',
+      role:  'President',
+      bio:   'Once commanded a riding mower chariot while wearing a bucket on my head.',
+      photo: '/presidnt.jpg' as string,
+    },
+    {
+      name:  'TBD',
+      role:  'Vice President',
+      bio:   'Bio coming soon.',
+      photo: '' as string,
+    },
+    {
+      name:  'TBD',
+      role:  'Treasurer',
+      bio:   'Bio coming soon.',
+      photo: '' as string,
+    },
+    {
+      name:  'TBD',
+      role:  'Board Member',
+      bio:   'Bio coming soon.',
+      photo: '' as string,
+    },
+    {
+      name:  'TBD',
+      role:  'Board Member',
+      bio:   'Bio coming soon.',
+      photo: '' as string,
+    },
+  ],
+
   social: {
     facebook: 'https://www.facebook.com/groups/253653171083360/',
   },

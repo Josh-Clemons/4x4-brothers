@@ -55,6 +55,29 @@ export default function Events() {
         </section>
       )}
 
+      {/* ── MN4WD Association calendar ───────────────────────── */}
+      <section className="section events-mn4wd">
+        <div className="content-container events-mn4wd-inner">
+          <div className="events-mn4wd-text">
+            <p className="events-mn4wd-label">Minnesota 4WD Association</p>
+            <h2 className="events-mn4wd-heading">Regional Events Calendar</h2>
+            <p className="events-mn4wd-body">
+              4x4 Brothers is a member club of the MN4WD Association. Their annual
+              calendar lists regional runs, competitions, and events open to all
+              member clubs across the state.
+            </p>
+          </div>
+          <a
+            href="https://mn4wda.org/wp-content/uploads/2026/01/2026-Calendar.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-brand-blue"
+          >
+            View 2026 MN4WDA Calendar
+          </a>
+        </div>
+      </section>
+
       {/* ── Facebook CTA ────────────────────────────────────── */}
       <section className="section section-dark events-fb-cta">
         <div className="content-container">

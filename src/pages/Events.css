@@ -37,6 +37,50 @@
   }
 }
 
+/* MN4WD Association calendar */
+.events-mn4wd {
+  background-color: var(--color-dark-alt);
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-lg);
+}
+.events-mn4wd-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+.events-mn4wd-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+  margin: 0 0 0.4rem;
+}
+.events-mn4wd-heading {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  color: var(--color-white);
+  margin: 0 0 0.75rem;
+}
+.events-mn4wd-body {
+  color: #d1d5db;
+  font-size: 1rem;
+  max-width: 560px;
+  line-height: 1.7;
+  margin: 0;
+}
+@media (min-width: 640px) {
+  .events-mn4wd-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+  }
+  .events-mn4wd-text {
+    flex: 1;
+  }
+}
+
 /* Facebook CTA */
 .events-fb-cta {
   padding-top: var(--space-lg);

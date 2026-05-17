@@ -61,6 +61,40 @@ export default function About() {
         </div>
       </section>
 
+      {/* ── Board ───────────────────────────────────────────── */}
+      <section className="section section-light about-section">
+        <div className="content-container">
+          <p className="section-label">Leadership</p>
+          <h2 className="about-heading">The Board</h2>
+          <hr className="brand-divider" />
+          <div className="board-grid">
+            {club.board.map((member, i) => (
+              <div key={i} className="board-card">
+                {member.photo ? (
+                  <img
+                    src={member.photo}
+                    alt={member.name}
+                    className="board-card-photo"
+                  />
+                ) : (
+                  <div className="board-card-photo-placeholder" aria-hidden="true">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle cx="12" cy="8" r="4" fill="#4B5563" />
+                      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#4B5563" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  </div>
+                )}
+                <div className="board-card-body">
+                  <p className="board-card-role">{member.role}</p>
+                  <h3 className="board-card-name">{member.name}</h3>
+                  <p className="board-card-bio">{member.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Membership ──────────────────────────────────────── */}
       <section className="section section-dark about-section">
         <div className="content-container">

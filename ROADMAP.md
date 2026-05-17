@@ -203,3 +203,4 @@ MN4WD sync job in one place. Long-term this becomes the site's backend.
 | 2026-05-17 | Brand palette: red `#D42B2B`, blue `#3050C8`, dark bg | Pulled from logo |
 | 2026-05-17 | Gallery and Merch deferred to phase 2 | Content/logistics not ready |
 | 2026-05-17 | Events backend: lightweight Node API recommended | Needed for submissions + MN4WD sync |
+| 2026-05-17 | Feedback uses shared `report-service` (irc project) | Already running on server; `projects.json` has `mn4x4` entry pointing to `#4x4-brothers` room |

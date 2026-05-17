@@ -12,7 +12,7 @@ const navLinks = [
   { to: '/gallery', label: 'Gallery'},
 ]
 
-export default function Navbar() {
+export default function Navbar({ onOpenReport }: { onOpenReport: () => void }) {
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
 
@@ -46,6 +46,12 @@ export default function Navbar() {
           >
             Facebook
           </a>
+          <button
+            className="navbar-link navbar-link--feedback"
+            onClick={onOpenReport}
+          >
+            Feedback
+          </button>
         </nav>
 
         {/* Hamburger */}
@@ -90,6 +96,12 @@ export default function Navbar() {
         >
           Facebook ↗
         </a>
+        <button
+          className="navbar-mobile-link navbar-mobile-link--feedback"
+          onClick={() => { onOpenReport(); close() }}
+        >
+          Feedback
+        </button>
       </nav>
     </header>
   )
