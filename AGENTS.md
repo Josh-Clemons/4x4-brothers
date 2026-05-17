@@ -21,16 +21,74 @@
 ## Project Context
 
 ### What this project does
-<!-- One paragraph description -->
+mn4x4.org is the public website for the **Minnesota 4x4 Brothers**, a
+four-wheel drive club established in 1967. The site serves as the club's
+digital home: introducing the club, listing upcoming runs and events,
+and eventually hosting a gallery and merch store. It is a 5-page
+React/TypeScript/Vite SPA deployed via Caddy (catch-all rewrite to
+`index.html`). See `ROADMAP.md` for the active feature backlog.
 
 ### Stack & key technologies
-<!-- Languages, frameworks, tools -->
+- **React 18** + **TypeScript** (strict) + **Vite 5**
+- **React Router v6** (client-side routing, requires Caddy catch-all)
+- **Bootstrap 5** / react-bootstrap — present but mostly unused; prefer
+  custom CSS classes over Bootstrap utilities
+- **Imbue** serif font (Google Fonts) — loaded in `index.html`
+- Custom CSS design system in `src/styles/theme.css` (tokens, utility
+  classes, brand buttons, difficulty badges)
+- Brand palette: red `#D42B2B`, blue `#3050C8`, dark bg `#111827`
+- Static data files (`src/data/`) — no backend yet; events are
+  hand-authored TypeScript
 
 ### Directory structure
-<!-- Brief overview of what lives where -->
+```
+src/
+  pages/        Home, About, Events, Gallery (stub), Merch (stub)
+  components/   Navbar, Footer, EventCard  (+matching .css files)
+  data/         club.ts (club metadata), events.ts (run data)
+  styles/       theme.css (design tokens), pages.css (shared layout)
+  main.tsx      entry point
+  App.tsx       router + top-level layout
+public/         static assets (logo images)
+dist/           build output — served by Caddy in production
+ROADMAP.md      living task backlog — check here before starting work
+```
 
 ### Conventions
-<!-- Naming, formatting, commit style, branch strategy, etc. -->
+- One component per file; CSS file co-located with its component
+- Data files use `as const` and export a single default object/array
+- Use CSS custom properties from `theme.css` — do **not** hardcode
+  colours or spacing
+- Use brand utility classes (`btn-brand-red`, `badge-difficulty`, etc.)
+  before writing new CSS
+- PascalCase components, camelCase everything else
+- Keep Bootstrap imports minimal; prefer custom CSS
+- No `prettier` config yet — match surrounding style
+- Commits: imperative mood, short subject line (`Add EventCard link`)
+- Run `npm run build` and `npm run lint` before marking anything done
+- **Dependency hygiene:** periodically run `npm outdated` and propose
+  package updates for review — especially security-relevant deps
+  (Vite, React, react-router-dom). Always check the changelog for
+  breaking changes before bumping majors.
+
+---
+
+## Tone & Voice
+
+The site speaks to **rock crawlers and technical wheelers** — people who
+pick a line carefully, know their approach angles, and would rather
+air down and crawl it clean than spray roost for the camera.
+
+- **Semi-edgy, unapologetically outdoorsy.** Direct, confident, a little
+  rough around the edges — not corporate-polished.
+- **Not mud-truck culture.** Avoid imagery, copy, or metaphors that skew
+  toward drag-and-spray bog runs. Think Rubicon, not Bounty Hole.
+- Competence over bravado. The club has been around since 1967 — the
+  tone earns its swagger.
+- Inclusive within the culture: newcomers are welcome, but the bar is
+  set on the trail, not in a brochure.
+- Copy should feel like it was written by someone who has actually aired
+  down and crawled a shelf road, not a marketing agency.
 
 ---
 
