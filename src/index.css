@@ -1,0 +1,12 @@
+/* Global resets and app shell — brand tokens live in styles/theme.css */
+
+#root,
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-shell > main {
+  flex: 1;
+}

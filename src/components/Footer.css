@@ -1,0 +1,92 @@
+/* ── Site Footer ───────────────────────────────────────────── */
+
+.site-footer {
+  background-color: var(--color-dark);
+  color: #9ca3af;
+  font-family: var(--font-primary);
+  border-top: 3px solid var(--color-red);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-sm) var(--space-md);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 640px) {
+  .footer-inner {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+/* Brand column */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.footer-club-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-white);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.footer-est {
+  font-size: 0.85rem;
+  color: var(--color-red);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.footer-tagline {
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Nav columns */
+.footer-nav,
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.footer-nav-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin: 0 0 0.25rem;
+}
+.footer-link {
+  color: #9ca3af;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color var(--transition);
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+}
+.footer-link:hover {
+  color: var(--color-red);
+}
+
+/* Bottom bar */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: var(--space-sm);
+  text-align: center;
+}
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+}

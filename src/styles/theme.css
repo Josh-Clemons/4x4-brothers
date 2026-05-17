@@ -1,0 +1,208 @@
+/* ============================================================
+   Minnesota 4x4 Brothers — Brand Theme
+   ============================================================ */
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Imbue:opsz,wght@10..100,100..900&display=swap');
+
+/* ── Design Tokens ─────────────────────────────────────────── */
+:root {
+  /* Brand colours */
+  --color-red:        #D42B2B;
+  --color-red-dark:   #A81E1E;
+  --color-blue:       #3050C8;
+  --color-blue-dark:  #1F3A9E;
+  --color-dark:       #111827;
+  --color-dark-alt:   #1F2937;
+  --color-light:      #F5F5F5;
+  --color-white:      #FFFFFF;
+  --color-muted:      #6B7280;
+  --color-border:     #E5E7EB;
+
+  /* Typography */
+  --font-primary: 'Imbue', Georgia, serif;
+  --font-size-base: 1rem;        /* 16px */
+  --line-height-base: 1.65;
+
+  /* Spacing scale */
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  2rem;
+  --space-lg:  4rem;
+  --space-xl:  6rem;
+
+  /* Borders */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.18);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.25);
+
+  /* Transitions */
+  --transition: 200ms ease;
+}
+
+/* ── Global Reset / Base ───────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: var(--font-size-base);
+}
+
+body {
+  font-family: var(--font-primary);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  line-height: var(--line-height-base);
+  color: var(--color-dark);
+  background-color: var(--color-light);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+a {
+  color: var(--color-blue);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover {
+  color: var(--color-blue-dark);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Utility Classes ───────────────────────────────────────── */
+
+/* Sections */
+.section {
+  padding: var(--space-lg) var(--space-sm);
+}
+.section-dark {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+}
+.section-alt {
+  background-color: var(--color-dark-alt);
+  color: var(--color-white);
+}
+.section-light {
+  background-color: var(--color-white);
+  color: var(--color-dark);
+}
+
+/* Text helpers */
+.text-red   { color: var(--color-red) !important; }
+.text-blue  { color: var(--color-blue) !important; }
+.text-muted-custom { color: var(--color-muted); }
+
+/* Buttons */
+.btn-brand-red {
+  display: inline-block;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+  min-height: 44px;
+}
+.btn-brand-red:hover {
+  background-color: var(--color-red-dark);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+.btn-brand-blue {
+  display: inline-block;
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+  min-height: 44px;
+}
+.btn-brand-blue:hover {
+  background-color: var(--color-blue-dark);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+.btn-outline-white {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--color-white);
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 2px solid var(--color-white);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition);
+  min-height: 44px;
+}
+.btn-outline-white:hover {
+  background-color: var(--color-white);
+  color: var(--color-dark);
+}
+
+/* Difficulty badges */
+.badge-difficulty {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.badge-easy     { background-color: #16a34a; color: #fff; }
+.badge-moderate { background-color: #d97706; color: #fff; }
+.badge-hard     { background-color: var(--color-red); color: #fff; }
+
+/* Divider */
+.brand-divider {
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-red);
+  margin: var(--space-sm) 0 var(--space-md);
+  border: none;
+}
+.brand-divider.center {
+  margin-left: auto;
+  margin-right: auto;
+}

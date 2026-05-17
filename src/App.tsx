@@ -1,20 +1,15 @@
-import clubLogo from './assets/4x4-brothers.jpg'
-import './App.css'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import { Outlet } from 'react-router-dom'
+import './styles/theme.css'
+import './styles/pages.css'
 
-function App() {
-
+export default function App() {
   return (
-    <div style={{
-        height: '100vh',
-        width: '100vw',
-        backgroundImage: `url(${clubLogo})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        opacity: 0.2
-    }}>
-
+    <div className="app-shell">
+      <Navbar />
+      <Outlet />
+      <Footer />
     </div>
   )
 }
-
-export default App

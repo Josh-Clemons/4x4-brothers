@@ -1,0 +1,36 @@
+/* ── Shared page styles (imported per-page or via theme.css) ─ */
+
+/* Page hero banner (used on inner pages) */
+.page-hero {
+  padding: var(--space-lg) var(--space-sm) var(--space-md);
+}
+.page-hero-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  margin: 0 0 0.5rem;
+}
+.page-hero-title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--color-white);
+  margin: 0 0 0.75rem;
+}
+.page-hero-subtitle {
+  font-size: 1.05rem;
+  color: #d1d5db;
+  margin: 0;
+  max-width: 620px;
+  line-height: 1.7;
+}
+
+/* Section label (small eyebrow text) */
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  margin: 0 0 0.5rem;
+}

@@ -1,0 +1,56 @@
+/* ── Events Page ───────────────────────────────────────────── */
+
+.events-section {
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-lg);
+}
+
+.events-section-heading {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--color-dark);
+  margin: 0;
+}
+
+.events-section-body {
+  color: #374151;
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 0 var(--space-md);
+  line-height: 1.7;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .events-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Facebook CTA */
+.events-fb-cta {
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-lg);
+}
+.events-fb-heading {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  color: var(--color-white);
+  margin: 0 0 0.75rem;
+}
+.events-fb-body {
+  color: #d1d5db;
+  font-size: 1rem;
+  max-width: 580px;
+  line-height: 1.7;
+  margin: 0 0 var(--space-md);
+}

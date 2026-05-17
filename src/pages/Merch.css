@@ -1,0 +1,32 @@
+/* ── Merch Page ────────────────────────────────────────────── */
+
+.merch-placeholder {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.merch-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.merch-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.merch-heading {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--color-dark);
+  margin: 0 0 1rem;
+}
+
+.merch-body {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  max-width: 480px;
+  margin: 0 0 2rem;
+  line-height: 1.7;
+}
