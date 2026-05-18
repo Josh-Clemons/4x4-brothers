@@ -32,6 +32,26 @@ export default function About() {
         </div>
       </section>
 
+      {/* ── Club History (Timeline) ─────────────────────────── */}
+      <section className="section section-light about-section">
+        <div className="content-container">
+          <p className="section-label">Club History</p>
+          <h2 className="about-heading">Milestones</h2>
+          <hr className="brand-divider" />
+          <div className="timeline">
+            {club.milestones.map((m, i) => (
+              <div key={m.year} className={`timeline-item ${i % 2 === 0 ? 'timeline-left' : 'timeline-right'}`}>
+                <div className="timeline-content">
+                  <span className="timeline-year">{m.year}</span>
+                  <h3 className="timeline-title">{m.title}</h3>
+                  <p className="timeline-desc">{m.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Mission ─────────────────────────────────────────── */}
       <section className="section about-section" style={{ backgroundColor: 'var(--color-dark-alt)', color: 'var(--color-white)' }}>
         <div className="content-container">

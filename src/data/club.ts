@@ -2,7 +2,7 @@ const club = {
   name: 'Minnesota 4x4 Brothers',
   shortName: 'MN 4x4 Brothers',
   established: 1967,
-  tagline: 'Air Down. Show Up. Wheel Clean.',
+  tagline: 'Different Generations. Same Obsession.',
   description:
     'The Minnesota 4x4 Brothers have been wheeling since 1967 — back when four-wheel drive ' +
     'was a job, not a trim level. We\'re a technical off-road club: we pick our lines, ' +
@@ -29,6 +29,15 @@ const club = {
       { title: 'Stewardship', description: 'We dig water bars, pack out trash, and fight for trail access. The trail doesn\'t maintain itself.' },
     ],
   },
+
+  milestones: [
+    { year: 1967, title: 'Club Founded',       description: 'A small crew of dirt-boot regulars formalize what had been loose weekend runs into an official club.' },
+    { year: 1975, title: 'First Organized Run', description: 'The club holds its first structured trail run with spotters, recovery gear, and a route sheet.' },
+    { year: 1983, title: 'Trail Stewardship',   description: 'Members adopt a stretch of trail and begin organized maintenance — water bars, drainage, and cleanup days.' },
+    { year: 1995, title: 'Club Constitution',   description: 'Formal bylaws and a code of conduct adopted, creating the membership sponsorship model still used today.' },
+    { year: 2005, title: 'Online Community',    description: 'Forum launched. Run reports, trail conditions, and build threads move online for the first time.' },
+    { year: 2018, title: 'Next Generation',     description: 'Membership doubles as the next wave of off-road enthusiasts joins — newer rigs, same commitment to the dirt.' },
+  ],
 
   membership: {
     howToJoin:
