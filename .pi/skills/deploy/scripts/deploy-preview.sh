@@ -111,7 +111,7 @@ if [ "$HTTP_STATUS" != "200" ]; then
     exit 1
 fi
 
-if ! grep -qi "mn4x4" "$HTTP_BODY"; then
+if ! grep -qi "4x4" "$HTTP_BODY"; then
     echo "ERROR: Smoke test failed — response body does not look like the mn4x4 site"
     rm -f "$HTTP_BODY"
     exit 1

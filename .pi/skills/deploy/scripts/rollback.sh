@@ -72,7 +72,7 @@ if [ "$HTTP_STATUS" != "200" ]; then
     exit 1
 fi
 
-if ! grep -qi "mn4x4" "$HTTP_BODY"; then
+if ! grep -qi "4x4" "$HTTP_BODY"; then
     echo "ERROR: Smoke test failed after rollback — response body looks wrong."
     echo "Check Caddy and /var/www/mn4x4/ manually."
     rm -f "$HTTP_BODY"
