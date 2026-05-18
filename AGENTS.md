@@ -127,6 +127,24 @@ Send these commands directly in `#4x4-brothers:mn4x4.org`:
 
 ---
 
+## Skills
+
+| Skill | Location | Description |
+|---|---|---|
+| `deploy` | `.pi/skills/deploy/SKILL.md` | Build, preview, promote, and roll back mn4x4.org deployments |
+
+### Deploy workflow
+
+1. **One-time setup** (run manually once): `.pi/skills/deploy/scripts/setup.sh`
+   — creates `/var/www/mn4x4/` structure and prints Caddy + DNS config
+2. **Preview:** `deploy-preview.sh` — lint + build + rsync to `preview.mn4x4.org`
+3. **Promote:** `promote.sh` — swap production symlink, smoke test, auto-rollback on failure
+4. **Rollback:** `rollback.sh` — swap back to previous build immediately, no confirmation needed
+
+All scripts require a clean git working tree. Versioned builds kept at `/var/www/mn4x4/builds/` (3 retained).
+
+---
+
 ## Out of Scope
 
 - Do not make changes outside `/home/josh/Projects/4x4-brothers` without explicit instruction
