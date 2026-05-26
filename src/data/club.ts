@@ -61,7 +61,7 @@ const club = {
       photo: '/presidnt.jpg' as string,
     },
     {
-      name:  'TBD',
+      name:  'Dusty Sami',
       role:  'Vice President',
       bio:   'Bio coming soon.',
       photo: '' as string,
