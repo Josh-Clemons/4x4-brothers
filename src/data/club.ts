@@ -2,7 +2,7 @@ const club = {
   name: 'Minnesota 4x4 Brothers',
   shortName: 'MN 4x4 Brothers',
   established: 1967,
-  tagline: 'Different Generations. Same Obsession.',
+  tagline: 'Air Down. Show Up. Wheel Clean.',
   description:
     'The Minnesota 4x4 Brothers have been wheeling since 1967 — back when four-wheel drive ' +
     'was a job, not a trim level. We\'re a technical off-road club: we pick our lines, ' +
