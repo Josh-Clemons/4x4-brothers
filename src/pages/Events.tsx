@@ -5,13 +5,7 @@ import './Events.css'
 
 export default function Events() {
   const recurringEvents = events.filter(e => e.isRecurring)
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  const upcomingEvents  = events.filter(e => {
-    if (e.isRecurring || !e.date) return false
-    const cutoff = new Date(e.endDate ?? e.date)
-    return cutoff >= today
-  })
+  const scheduledEvents = events.filter(e => !e.isRecurring && e.date)
 
   return (
     <main className="events-page">
@@ -28,13 +22,13 @@ export default function Events() {
       </section>
 
       {/* ── Specific upcoming ───────────────────────────────── */}
-      {upcomingEvents.length > 0 && (
+      {scheduledEvents.length > 0 && (
         <section className="section section-light events-section">
           <div className="content-container">
             <h2 className="events-section-heading">2026 Events</h2>
             <hr className="brand-divider" />
             <div className="events-grid">
-              {upcomingEvents.map(event => (
+              {scheduledEvents.map(event => (
                 <EventCard key={event.id} event={event} />
               ))}
             </div>
