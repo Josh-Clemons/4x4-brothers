@@ -7,7 +7,15 @@ import '../styles/theme.css'
 import './Home.css'
 
 export default function Home() {
-  const featuredEvents = events.slice(0, 3)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const featuredEvents = events
+    .filter(e => {
+      if (e.isRecurring || !e.date) return false
+      const cutoff = new Date(e.endDate ?? e.date)
+      return cutoff >= today
+    })
+    .slice(0, 3)
 
   return (
     <main>
