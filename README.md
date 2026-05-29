@@ -1,30 +1,81 @@
-# React + TypeScript + Vite
+# mn4x4.org
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website for the **Minnesota 4x4 Brothers**, a four-wheel drive club established in 1967.  
+Live at [mn4x4.org](https://mn4x4.org).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
 
-## Expanding the ESLint configuration
+| | |
+|---|---|
+| Framework | React 18 + TypeScript (strict) |
+| Build tool | Vite 5 |
+| Routing | React Router v6 (client-side, Caddy catch-all required) |
+| Styling | Custom CSS design system (`src/styles/theme.css`) + Bootstrap 5 (minimal use) |
+| Typography | [Imbue](https://fonts.google.com/specimen/Imbue) (Google Fonts, loaded in `index.html`) |
+| Data | Static TypeScript files in `src/data/` — no backend yet |
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+**Brand palette:** red `#D42B2B` · blue `#3050C8` · dark background `#111827`
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
+## Local Development
+
+**Prerequisites:** Node.js 18+, npm
+
+```bash
+npm install
+npm run dev       # dev server at http://localhost:5173
+npm run build     # type-check + production build → dist/
+npm run lint      # ESLint (zero warnings policy)
+npm run preview   # serve dist/ locally
+```
+
+---
+
+## Directory Structure
+
+```
+src/
+  pages/          Home, About, Events, Gallery (stub), Merch (stub)
+  components/     Navbar, Footer, EventCard, ReportModal  (+matching .css files)
+  data/           club.ts (club metadata), events.ts (run data)
+  styles/         theme.css (design tokens), pages.css (shared layout)
+  main.tsx        entry point
+  App.tsx         router + top-level layout
+public/           static assets (logos)
+dist/             build output — served by Caddy in production
+```
+
+---
+
+## Design Conventions
+
+- One component per file; CSS file co-located with its component
+- Use CSS custom properties from `theme.css` — do **not** hardcode colours or spacing
+- Use brand utility classes (`btn-brand-red`, `badge-difficulty`, etc.) before writing new CSS
+- Data files use `as const` and export a single default object/array
+- Keep Bootstrap imports minimal; prefer custom CSS
+
+---
+
+## Deployment
+
+The site is served by Caddy. React Router requires a catch-all rewrite so all paths fall back to `index.html`:
+
+```caddy
+mn4x4.org {
+    root * /var/www/mn4x4/current
+    try_files {path} /index.html
+    file_server
 }
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+See `.pi/skills/deploy/SKILL.md` for the full build → preview → promote → rollback workflow.
+
+---
+
+## Roadmap
+
+Active feature backlog lives in [`ROADMAP.md`](ROADMAP.md).
