@@ -33,8 +33,8 @@ export default function ReportModal({ open, onClose }: Props) {
       submitterName:  name.trim(),
       submitterEmail: email.trim() || undefined,
       requestUpdates: Boolean(email.trim()) && requestUpdates,
-      // Page path appended so the agent has context without exposing it as a UI field
-      message:        `${message.trim()}\n\n[Page: ${location.pathname}]`,
+      message:        message.trim(),
+      page:           location.pathname,
       website, // honeypot — must be empty
     }
 
