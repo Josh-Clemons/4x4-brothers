@@ -5,7 +5,13 @@ import './Events.css'
 
 export default function Events() {
   const recurringEvents = events.filter(e => e.isRecurring)
-  const upcomingEvents  = events.filter(e => !e.isRecurring && e.date)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const upcomingEvents  = events.filter(e => {
+    if (e.isRecurring || !e.date) return false
+    const cutoff = new Date(e.endDate ?? e.date)
+    return cutoff >= today
+  })
 
   return (
     <main className="events-page">
