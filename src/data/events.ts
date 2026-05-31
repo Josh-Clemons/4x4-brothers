@@ -40,18 +40,6 @@ const events: ClubEvent[] = [
     tags: ['weekend', 'raffle', 'mn4wda'],
   },
   {
-    id: 'avf-july',
-    name: 'AVF Summer Wheeling',
-    description:
-      'Weekend run at Apple Valley Farms hosted by RPM 4x4 Club. ' +
-      'Good terrain, good company — a raffle supports MN4WDA trail work.',
-    location: 'Apple Valley Farms, Chetek, WI',
-    isRecurring: false,
-    date: '2026-07-25',
-    endDate: '2026-07-26',
-    tags: ['weekend', 'raffle', 'mn4wda'],
-  },
-  {
     id: 'crawl-for-the-cure',
     name: 'Crawl for the Cure',
     description:
@@ -62,6 +50,18 @@ const events: ClubEvent[] = [
     date: '2026-07-16',
     endDate: '2026-07-19',
     tags: ['charity', 'technical', 'camping', 'overnight'],
+  },
+  {
+    id: 'avf-july',
+    name: 'AVF Summer Wheeling',
+    description:
+      'Weekend run at Apple Valley Farms hosted by RPM 4x4 Club. ' +
+      'Good terrain, good company — a raffle supports MN4WDA trail work.',
+    location: 'Apple Valley Farms, Chetek, WI',
+    isRecurring: false,
+    date: '2026-07-25',
+    endDate: '2026-07-26',
+    tags: ['weekend', 'raffle', 'mn4wda'],
   },
   {
     id: 'labor-day-weekend',
@@ -89,4 +89,10 @@ const events: ClubEvent[] = [
   },
 ]
 
-export default events
+// Always export sorted by date so authoring order doesn't matter
+export default [...events].sort((a, b) => {
+  if (!a.date && !b.date) return 0
+  if (!a.date) return 1
+  if (!b.date) return -1
+  return a.date.localeCompare(b.date)
+})
