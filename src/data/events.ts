@@ -40,6 +40,18 @@ const events: ClubEvent[] = [
     tags: ['weekend', 'raffle', 'mn4wda'],
   },
   {
+    id: 'avf-july',
+    name: 'AVF Summer Wheeling',
+    description:
+      'Weekend run at Apple Valley Farms hosted by RPM 4x4 Club. ' +
+      'Good terrain, good company — a raffle supports MN4WDA trail work.',
+    location: 'Apple Valley Farms, Chetek, WI',
+    isRecurring: false,
+    date: '2026-07-25',
+    endDate: '2026-07-26',
+    tags: ['weekend', 'raffle', 'mn4wda'],
+  },
+  {
     id: 'crawl-for-the-cure',
     name: 'Crawl for the Cure',
     description:
