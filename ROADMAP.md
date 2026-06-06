@@ -1,6 +1,6 @@
 # mn4x4.org — Roadmap & Feature Backlog
 
-> Last updated: 2026-05-17
+> Last updated: 2026-05-31
 > Current state: 5-page React/TS/Vite site — built, **not yet deployed**.
 > Caddy is still serving the old static file. See **Deployment** below.
 
@@ -157,6 +157,23 @@ MN4WD sync job in one place. Long-term this becomes the site's backend.
 - [ ] If print-on-demand: integrate store widget or link out to storefront
 - [ ] If bulk: build a simple catalog page with an order/interest form
 - [ ] Design assets: ensure logo files are in vector (SVG/AI) for print use
+
+---
+
+## ⬜ Infrastructure — Cloudflare Protection
+
+**Goal:** Protect the home server's internet connection from traffic spikes using Cloudflare features.
+
+- [ ] Research Cloudflare rate limiting rules (free vs. paid tier limits)
+- [ ] Evaluate other relevant Cloudflare options:
+  - **Under Attack Mode** — instant on/off for DDoS situations
+  - **Page Rules / Cache Rules** — cache static assets at the edge to reduce origin hits
+  - **Browser Integrity Check** — drop obviously bad bots
+  - **IP Access Rules** — geo-block or allow-list if needed
+  - **Bot Fight Mode** — available on free plan
+  - **Cloudflare Tunnel** (`cloudflared`) — hides origin IP entirely; worth evaluating
+- [ ] Decide on caching strategy for `dist/` assets vs. dynamic API routes (once backend exists)
+- [ ] Document chosen Cloudflare settings in `docs/infrastructure.md` so they can be reproduced
 
 ---
 

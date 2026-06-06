@@ -13,7 +13,7 @@
   padding: var(--space-lg) var(--space-sm) var(--space-md);
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 @media (min-width: 640px) {
@@ -58,6 +58,7 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
 .footer-nav-heading {
   font-size: 0.75rem;
   font-weight: 700;
