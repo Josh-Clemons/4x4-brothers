@@ -64,7 +64,7 @@ const club = {
       name:  'Kyle Quitter',
       role:  'Vice President',
       bio:   'Bio coming soon.',
-      photo: '' as string,
+      photo: '/board/kyle.webp' as string,
     },
     {
       name:  'Dusty Winegar',
