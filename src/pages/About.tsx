@@ -1,4 +1,5 @@
 import club from '../data/club'
+import { flags } from '../config/flags'
 import '../styles/theme.css'
 import './About.css'
 
@@ -17,69 +18,44 @@ export default function About() {
       </section>
 
       {/* ── History ─────────────────────────────────────────── */}
-      <section className="section section-light about-section">
-        <div className="content-container about-two-col">
-          <div>
-            <p className="section-label">Since {club.established}</p>
-            <h2 className="about-heading">Our History</h2>
-            <hr className="brand-divider" />
-            <p className="about-body">{club.about.history}</p>
+      {flags.aboutHistory && (
+        <section className="section section-light about-section">
+          <div className="content-container about-two-col">
+            <div>
+              <p className="section-label">Since {club.established}</p>
+              <h2 className="about-heading">Our History</h2>
+              <hr className="brand-divider" />
+              <p className="about-body">{club.about.history}</p>
+            </div>
+            <div className="about-est-badge" aria-hidden="true">
+              <span className="about-est-year">{club.established}</span>
+              <span className="about-est-label">Est.</span>
+            </div>
           </div>
-          <div className="about-est-badge" aria-hidden="true">
-            <span className="about-est-year">{club.established}</span>
-            <span className="about-est-label">Est.</span>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── Club History (Timeline) ─────────────────────────── */}
-      <section className="section section-light about-section">
-        <div className="content-container">
-          <p className="section-label">Club History</p>
-          <h2 className="about-heading">Milestones</h2>
-          <hr className="brand-divider" />
-          <div className="timeline">
-            {club.milestones.map((m, i) => (
-              <div key={m.year} className={`timeline-item ${i % 2 === 0 ? 'timeline-left' : 'timeline-right'}`}>
-                <div className="timeline-content">
-                  <span className="timeline-year">{m.year}</span>
-                  <h3 className="timeline-title">{m.title}</h3>
-                  <p className="timeline-desc">{m.description}</p>
+      {flags.aboutMilestones && (
+        <section className="section section-light about-section">
+          <div className="content-container">
+            <p className="section-label">Club History</p>
+            <h2 className="about-heading">Milestones</h2>
+            <hr className="brand-divider" />
+            <div className="timeline">
+              {club.milestones.map((m, i) => (
+                <div key={m.year} className={`timeline-item ${i % 2 === 0 ? 'timeline-left' : 'timeline-right'}`}>
+                  <div className="timeline-content">
+                    <span className="timeline-year">{m.year}</span>
+                    <h3 className="timeline-title">{m.title}</h3>
+                    <p className="timeline-desc">{m.description}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* ── Mission ─────────────────────────────────────────── */}
-      <section className="section about-section" style={{ backgroundColor: 'var(--color-dark-alt)', color: 'var(--color-white)' }}>
-        <div className="content-container">
-          <p className="section-label text-red">What We Stand For</p>
-          <h2 className="about-heading" style={{ color: 'var(--color-white)' }}>Our Mission</h2>
-          <hr className="brand-divider" />
-          <p className="about-body" style={{ color: '#d1d5db', maxWidth: '680px' }}>
-            {club.about.mission}
-          </p>
-        </div>
-      </section>
-
-      {/* ── Values ──────────────────────────────────────────── */}
-      <section className="section section-light about-section">
-        <div className="content-container">
-          <p className="section-label">Core Values</p>
-          <h2 className="about-heading">What Drives Us</h2>
-          <hr className="brand-divider" />
-          <div className="values-grid">
-            {club.about.values.map(v => (
-              <div key={v.title} className="value-card">
-                <h3 className="value-title">{v.title}</h3>
-                <p className="value-desc">{v.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── Board ───────────────────────────────────────────── */}
       <section className="section section-light about-section">
@@ -114,6 +90,37 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* ── Mission ─────────────────────────────────────────── */}
+      <section className="section about-section" style={{ backgroundColor: 'var(--color-dark-alt)', color: 'var(--color-white)' }}>
+        <div className="content-container">
+          <p className="section-label text-red">What We Stand For</p>
+          <h2 className="about-heading" style={{ color: 'var(--color-white)' }}>Our Mission</h2>
+          <hr className="brand-divider" />
+          <p className="about-body" style={{ color: '#d1d5db', maxWidth: '680px' }}>
+            {club.about.mission}
+          </p>
+        </div>
+      </section>
+
+      {/* ── Values ──────────────────────────────────────────── */}
+      {flags.aboutValues && (
+        <section className="section section-light about-section">
+          <div className="content-container">
+            <p className="section-label">Core Values</p>
+            <h2 className="about-heading">What Drives Us</h2>
+            <hr className="brand-divider" />
+            <div className="values-grid">
+              {club.about.values.map(v => (
+                <div key={v.title} className="value-card">
+                  <h3 className="value-title">{v.title}</h3>
+                  <p className="value-desc">{v.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Membership ──────────────────────────────────────── */}
       <section className="section section-dark about-section">
