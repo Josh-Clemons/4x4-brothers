@@ -12,7 +12,7 @@ export default function About() {
           <p className="page-hero-label">Who We Are</p>
           <h1 className="page-hero-title">About the Club</h1>
           <p className="page-hero-subtitle">
-            Minnesota's longest-running 4x4 club — built on dirty axles, honest spotting, and showing up when it counts.
+            Minnesota's longest-running 4x4 club — built on broken axles, good friends, and having fun.
           </p>
         </div>
       </section>
