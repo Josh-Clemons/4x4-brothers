@@ -67,12 +67,6 @@ const club = {
       photo: '' as string,
     },
     {
-      name:  'Stephanie Guzzy',
-      role:  'Treasurer',
-      bio:   'Bio coming soon.',
-      photo: '' as string,
-    },
-    {
       name:  'Dusty Winegar',
       role:  'Board Member',
       bio:   'Bio coming soon.',
@@ -81,6 +75,12 @@ const club = {
     {
       name:  'Joe Heinonen',
       role:  'Board Member',
+      bio:   'Bio coming soon.',
+      photo: '' as string,
+    },
+    {
+      name:  'Stephanie Guzzy',
+      role:  'Treasurer',
       bio:   'Bio coming soon.',
       photo: '' as string,
     },
