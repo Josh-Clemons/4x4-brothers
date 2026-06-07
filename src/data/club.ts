@@ -58,7 +58,7 @@ const club = {
       name:  'Matt Clemons',
       role:  'President',
       bio:   'Once commanded a riding mower chariot while wearing a bucket on my head.',
-      photo: '/presidnt.jpg' as string,
+      photo: '/board/presidnt.webp' as string,
     },
     {
       name:  'Kyle Quitter',
@@ -69,8 +69,8 @@ const club = {
     {
       name:  'Dusty Winegar',
       role:  'Board Member',
-      bio:   'Bio coming soon.',
-      photo: '' as string,
+      bio:   'Wheeling since before I was born.',
+      photo: '/board/dusty.webp' as string,
     },
     {
       name:  'Joe Heinonen',
@@ -81,8 +81,8 @@ const club = {
     {
       name:  'Stephanie Guzzy',
       role:  'Treasurer',
-      bio:   'Bio coming soon.',
-      photo: '' as string,
+      bio:   'Go Vikings!',
+      photo: '/board/steph.webp' as string,
     },
   ],
 
