@@ -18,9 +18,9 @@ const events: ClubEvent[] = [
     id: 'memorial-rally',
     name: 'Memorial Total Off-Road Rally',
     description:
-      'Four days of open wheeling over Memorial Day weekend at IROHVSRA. ' +
-      'One of the biggest multi-day events of the season — camping on-site, mixed terrain, ' +
-      'and a full weekend to put your rig to work.',
+      'Four days of open wheeling at IROHVSRA over Memorial Day weekend. ' +
+      'One of the bigger events of the season — camping on-site, mixed terrain, ' +
+      'and a full weekend to get out and run.',
     location: 'IROHVSRA, Gilbert, MN',
     isRecurring: false,
     date: '2026-05-22',
@@ -31,8 +31,8 @@ const events: ClubEvent[] = [
     id: 'fathers-day-wheeling',
     name: "Father's Day Weekend Wheeling",
     description:
-      'A solid Father\'s Day weekend run at Apple Valley Farms with RPM 4x4 Club. ' +
-      'Good terrain, good company — a raffle supports MN4WDA trail work.',
+      'A Father\'s Day weekend run at Apple Valley Farms with the RPM 4x4 Club. ' +
+      'Good wheeling, good folks, and a raffle that helps fund MN4WDA trail work.',
     location: 'Apple Valley Farms, Chetek, WI',
     isRecurring: false,
     date: '2026-06-13',
@@ -43,8 +43,8 @@ const events: ClubEvent[] = [
     id: 'crawl-for-the-cure',
     name: 'Crawl for the Cure',
     description:
-      'Four days of hard wheeling at IROHVSRA raising money for Multiple Sclerosis research. ' +
-      'Technical terrain, great cause. Recovery gear required — this one earns its name.',
+      'Four days of harder wheeling at IROHVSRA, raising money for MS research. ' +
+      'Technical terrain for a good cause — bring your recovery gear for this one.',
     location: 'IROHVSRA & West 40 RV Park, Gilbert, MN',
     isRecurring: false,
     date: '2026-07-16',
@@ -55,8 +55,8 @@ const events: ClubEvent[] = [
     id: 'avf-july',
     name: 'AVF Summer Wheeling',
     description:
-      'Weekend run at Apple Valley Farms hosted by RPM 4x4 Club. ' +
-      'Good terrain, good company — a raffle supports MN4WDA trail work.',
+      'Another weekend at Apple Valley Farms with the RPM 4x4 Club. ' +
+      'Same good terrain and good company, plus a raffle for MN4WDA trail work.',
     location: 'Apple Valley Farms, Chetek, WI',
     isRecurring: false,
     date: '2026-07-25',
@@ -67,8 +67,8 @@ const events: ClubEvent[] = [
     id: 'labor-day-weekend',
     name: 'Labor Day Weekend Open Wheeling',
     description:
-      'Four days of open wheeling at IROHVSRA to close out summer. ' +
-      'Camping on-site, all skill levels, and plenty of iron range terrain to work through.',
+      'Four days at IROHVSRA to send off the summer. ' +
+      'Camping on-site, all skill levels welcome, and plenty of iron range terrain to work through.',
     location: 'IROHVSRA, Gilbert, MN',
     isRecurring: false,
     date: '2026-09-04',
@@ -79,8 +79,8 @@ const events: ClubEvent[] = [
     id: 'toys-for-tots',
     name: 'Toys for Tots Trail Ride',
     description:
-      'Two-day trail ride at Afton Apple Orchard raising toys for local kids. ' +
-      'Bring a new unwrapped toy for entry — great fall event for the whole family.',
+      'A two-day trail ride at Afton Apple Orchard collecting toys for local kids. ' +
+      'Bring a new, unwrapped toy to get in — a nice fall outing for the whole family.',
     location: 'Afton Apple Orchard, Hastings, MN',
     isRecurring: false,
     date: '2026-10-17',

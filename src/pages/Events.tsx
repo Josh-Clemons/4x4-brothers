@@ -15,8 +15,8 @@ export default function Events() {
           <p className="page-hero-label">Get Out There</p>
           <h1 className="page-hero-title">Club Events & Runs</h1>
           <p className="page-hero-subtitle">
-            We run year-round. Check our Facebook group for meet-up times,
-            last-minute changes, and anything that comes up between now and the trailhead.
+            We get out year-round. This page has the schedule — and we'll usually post
+            meet-up times and any last-minute changes here or in the Facebook group.
           </p>
         </div>
       </section>
@@ -27,6 +27,10 @@ export default function Events() {
           <div className="content-container">
             <h2 className="events-section-heading">2026 Events</h2>
             <hr className="brand-divider" />
+            <p className="events-section-body">
+              These are our main club runs for the year. You'll also find members out at all
+              kinds of other events on the MN4WDA calendar — these are just the ones we organize around.
+            </p>
             <div className="events-grid">
               {scheduledEvents.map(event => (
                 <EventCard key={event.id} event={event} />
@@ -43,8 +47,8 @@ export default function Events() {
             <h2 className="events-section-heading">Annual Runs</h2>
             <hr className="brand-divider" />
             <p className="events-section-body">
-              These runs happen every year. Exact dates are announced on our Facebook group
-              a few weeks before each event.
+              We run these every year. We'll post the exact dates a few weeks out —
+              keep an eye on this page or the Facebook group.
             </p>
             <div className="events-grid">
               {recurringEvents.map(event => (
@@ -62,9 +66,9 @@ export default function Events() {
             <p className="events-mn4wd-label">Minnesota 4WD Association</p>
             <h2 className="events-mn4wd-heading">Regional Events Calendar</h2>
             <p className="events-mn4wd-body">
-              4x4 Brothers is a member club of the MN4WD Association. Their annual
-              calendar lists regional runs, competitions, and events open to all
-              member clubs across the state.
+              We're a member club of the MN4WD Association. Their calendar lists runs,
+              competitions, and events open to member clubs all over the state. Odds are
+              you'll run into some of our members at a good number of them, too.
             </p>
           </div>
           <a
@@ -83,8 +87,8 @@ export default function Events() {
         <div className="content-container">
           <h2 className="events-fb-heading">Stay in the Loop</h2>
           <p className="events-fb-body">
-            Dates, locations, and last-minute changes are all posted in our Facebook group.
-            Join the group to get notified when the next run is announced.
+            Keep an eye on this page and the Facebook group — between the two,
+            you'll know when the next run is happening.
           </p>
           <a
             href="https://www.facebook.com/groups/253653171083360/"

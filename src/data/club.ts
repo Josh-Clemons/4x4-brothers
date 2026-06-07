@@ -2,12 +2,11 @@ const club = {
   name: 'Minnesota 4x4 Brothers',
   shortName: 'MN 4x4 Brothers',
   established: 1967,
-  tagline: 'Air Down. Show Up. Wheel Clean.',
+  tagline: 'Good Trails. Good People. Since 1967.',
   description:
-    'The Minnesota 4x4 Brothers have been wheeling since 1967 — back when four-wheel drive ' +
-    'was a job, not a trim level. We\'re a technical off-road club: we pick our lines, ' +
-    'spot each other through the rough stuff, and leave trails in better shape than we found them. ' +
-    'If that\'s your kind of Saturday, you\'ll fit right in.',
+    'The Minnesota 4x4 Brothers have been at this since 1967. We\'re a family friendly club ' +
+    'that likes picking a line and spotting each other through it. ' +
+    'New folks are always welcome - show up and we\'ll get you sorted.',
 
   about: {
     history:
@@ -19,9 +18,10 @@ const club = {
       'bigger and the lifts have gotten taller, but the club still runs on trust, trail knowledge, ' +
       'and a healthy respect for what\'s waiting on the other side of that ridge.',
     mission:
-      'We\'re here to wheel — hard when the terrain calls for it, smart always. We protect trail ' +
-      'access by using it responsibly, and we build the kind of community where the guy who bent ' +
-      'his Dana 44 last spring shows up first to help the new member figure out lockers this fall.',
+      'Our mission is pretty simple: enjoy the trails, treat the land right so it\'s still open ' +
+      'to us down the road, and take care of the people we\'re out there with. Everybody\'s ' +
+      'welcome — families, new wheelers, folks still learning their rigs. Somebody here has been ' +
+      'through whatever you\'re working on and is glad to lend a hand.',
     values: [
       { title: 'Community',   description: 'We recover together. On the trail and off, you can count on us to show up when it counts.' },
       { title: 'Respect',     description: 'Respect the land or lose it. We tread lightly, pack it out, and leave what we find.' },
@@ -41,9 +41,9 @@ const club = {
 
   membership: {
     howToJoin:
-      'The best way in is to show up to a run. We don\'t do applications — we do trail time. ' +
-      'Come out, meet the crew, wheel your rig, and see if this is your kind of club. ' +
-      'If it is, a current member will sponsor you in.',
+      'Easiest way to join is to come to a run and say hi. We\'re not big on paperwork — ' +
+      'spend some trail time with us, get to know the crew, and if it feels like a good fit, ' +
+      'a current member will sponsor you in. That\'s really all there is to it.',
     requirements: [
       'Attend at least two club runs',
       'Be sponsored by an existing member',

@@ -74,11 +74,10 @@ export default function Home() {
       <section className="section section-dark home-join">
         <div className="content-container home-join-inner">
           <div>
-            <h2 className="home-join-heading">Ready to Wheel with Us?</h2>
+            <h2 className="home-join-heading">Come Out Sometime</h2>
             <p className="home-join-body">
-              We don't have a signup form. The best way in is to come out to a run,
-              meet the crew on the trail, and see if we're your kind of people.
-              Show up ready to wheel and you'll feel right at home.
+              No signup form, no hoops. Come to a run, say hello, and see if it's
+              your kind of crowd. That's how just about everybody here got started.
             </p>
           </div>
           <div className="home-join-actions">
