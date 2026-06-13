@@ -38,13 +38,16 @@ npm run preview   # serve dist/ locally
 
 ```
 src/
-  pages/          Home, About, Events, Gallery (stub), Merch (stub)
+  pages/          Home, About, Events, Gallery, Album, Rigs, Merch (stub)
   components/     Navbar, Footer, EventCard, ReportModal  (+matching .css files)
-  data/           club.ts (club metadata), events.ts (run data)
+  data/           club.ts (club metadata), events.ts (run data),
+                  albums.ts (event photo albums), rigs.ts (member builds)
+  lib/            photos.ts (photo delivery URLs), dates.ts (date formatting)
   styles/         theme.css (design tokens), pages.css (shared layout)
   main.tsx        entry point
   App.tsx         router + top-level layout
 public/           static assets (logos)
+scripts/          add-photo.sh (photo ingest: orient, strip EXIF, install)
 dist/             build output — served by Caddy in production
 ```
 
@@ -57,6 +60,35 @@ dist/             build output — served by Caddy in production
 - Use brand utility classes (`btn-brand-red`, `badge-difficulty`, etc.) before writing new CSS
 - Data files use `as const` and export a single default object/array
 - Keep Bootstrap imports minimal; prefer custom CSS
+
+---
+
+## Photos (self-hosted + Cloudflare edge transformations)
+
+Content photos (gallery albums, member rigs, board portraits) live **on the
+server, outside this repo**, at `/var/www/mn4x4/photos/` — Caddy serves the
+directory at `mn4x4.org/photos/`. The repo carries only the tiny logos/favicon.
+Delivery goes through Cloudflare **Image Transformations** (free tier: 5,000
+unique transformations/month): resized to `thumb`/`card`/`full` widths,
+converted to WebP/AVIF, and cached at the edge. `src/lib/photos.ts` is the
+only place that builds those URLs; data files store bare filenames
+(e.g. `memorial-rally-2026-01.jpg`).
+
+Add photos with the ingest script — it bakes in EXIF rotation, strips all
+metadata (EXIF/GPS), and caps resolution *before* anything hits the web root:
+
+```bash
+scripts/add-photo.sh memorial-rally-2026-01.jpg ~/photos/IMG_4821.jpg
+```
+
+One-time setup: enable Image Transformations for the zone (Cloudflare
+dashboard → Images → Transformations), create `/var/www/mn4x4/photos`, and
+add the `/photos/*` handler to the Caddyfile.
+
+The gallery and rigs pages ship dark behind feature flags (`VITE_FLAG_GALLERY`,
+`VITE_FLAG_RIGS` — see `src/config/flags.ts`). The `/gallery` route itself
+stays live either way; the flag only swaps its content between the album index
+and the "Coming Soon" stub.
 
 ---
 

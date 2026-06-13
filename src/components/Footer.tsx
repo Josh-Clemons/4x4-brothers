@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import club from '../data/club'
+import { flags } from '../config/flags'
 import './Footer.css'
 
 export default function Footer({ onOpenReport }: { onOpenReport: () => void }) {
@@ -23,6 +24,7 @@ export default function Footer({ onOpenReport }: { onOpenReport: () => void }) {
           <Link to="/about"   className="footer-link">About</Link>
           <Link to="/merch"   className="footer-link">Merch</Link>
           <Link to="/gallery" className="footer-link">Gallery</Link>
+          {flags.rigsEnabled && <Link to="/rigs" className="footer-link">Rigs</Link>}
         </nav>
 
         {/* Social */}

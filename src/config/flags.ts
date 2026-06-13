@@ -6,6 +6,8 @@
 //   VITE_FLAG_ABOUT_HISTORY=true
 //   VITE_FLAG_ABOUT_MILESTONES=true
 //   VITE_FLAG_ABOUT_VALUES=true
+//   VITE_FLAG_GALLERY=true
+//   VITE_FLAG_RIGS=true
 //
 // Vite inlines import.meta.env at build time, so flag state is fixed per build.
 const enabled = (value: string | undefined): boolean => value === 'true'
@@ -17,4 +19,12 @@ export const flags = {
   aboutMilestones: enabled(import.meta.env.VITE_FLAG_ABOUT_MILESTONES),
   /** About page — "What Drives Us" core values. */
   aboutValues: enabled(import.meta.env.VITE_FLAG_ABOUT_VALUES),
+  /**
+   * Gallery — album index, /gallery/:albumId views, and "View Photos" links
+   * on event cards. Off = the live "Coming Soon" stub. The /gallery route and
+   * nav link stay up either way — only the page content is gated.
+   */
+  galleryEnabled: enabled(import.meta.env.VITE_FLAG_GALLERY),
+  /** Member rigs showcase — /rigs route plus its nav/footer links. */
+  rigsEnabled: enabled(import.meta.env.VITE_FLAG_RIGS),
 } as const

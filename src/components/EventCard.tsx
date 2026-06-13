@@ -1,23 +1,12 @@
+import { Link } from 'react-router-dom'
 import type { ClubEvent } from '../data/events'
+import { albumForEvent } from '../data/albums'
+import { flags } from '../config/flags'
+import { formatDate, formatDateShort } from '../lib/dates'
 import './EventCard.css'
 
 interface Props {
   event: ClubEvent
-}
-
-function formatDate(iso: string) {
-  // Parse as local date to avoid UTC-offset day shift
-  const [year, month, day] = iso.split('-').map(Number)
-  return new Date(year, month - 1, day).toLocaleDateString('en-US', {
-    month: 'long', day: 'numeric', year: 'numeric',
-  })
-}
-
-function formatDateShort(iso: string) {
-  const [year, month, day] = iso.split('-').map(Number)
-  return new Date(year, month - 1, day).toLocaleDateString('en-US', {
-    month: 'long', day: 'numeric',
-  })
 }
 
 export default function EventCard({ event }: Props) {
@@ -28,6 +17,8 @@ export default function EventCard({ event }: Props) {
     : event.month
     ? `Every ${event.month}`
     : 'Date TBD'
+
+  const album = flags.galleryEnabled ? albumForEvent(event.id) : undefined
 
   return (
     <article className="event-card">
@@ -44,6 +35,12 @@ export default function EventCard({ event }: Props) {
           <span key={tag} className="event-tag">#{tag}</span>
         ))}
       </div>
+
+      {album && (
+        <Link to={`/gallery/${album.id}`} className="event-card-photos-link">
+          View Photos →
+        </Link>
+      )}
     </article>
   )
 }

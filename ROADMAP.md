@@ -1,8 +1,9 @@
 # mn4x4.org — Roadmap & Feature Backlog
 
-> Last updated: 2026-05-31
-> Current state: 5-page React/TS/Vite site — built, **not yet deployed**.
-> Caddy is still serving the old static file. See **Deployment** below.
+> Last updated: 2026-06-07
+> Current state: 5-page React/TS/Vite site — **live in production**.
+> Served from `dist/` via Caddy, fronted by Cloudflare through a `cloudflared` tunnel
+> (origin IP hidden). Events are curated by hand in `src/data/events.ts`.
 
 ---
 
@@ -10,205 +11,141 @@
 
 | Symbol | Meaning |
 |--------|---------|
-| 🔴 | Blocking / must-do before launch |
+| 🔴 | Blocking / must-do |
 | 🟡 | High priority — near-term |
 | 🟢 | Nice-to-have / phase 2+ |
 | ⬜ | Needs research / decision required |
+| ✅ | Done |
 
 ---
 
-## 🔴 Deployment (Pre-launch blocker)
+## ✅ Deployment — DONE
 
-- [ ] Point Caddy at the new `dist/` output instead of the old static file
-- [ ] Verify all routes work (React Router needs catch-all rewrite rule in Caddy)
-- [ ] Confirm HTTPS cert renews cleanly after cutover
-- [ ] Smoke-test all 5 pages in production
+The site is launched and serving the Vite `dist/` build.
 
-**Caddy rewrite needed** — React Router is client-side, so Caddy must fall back to
-`index.html` for any path that isn't a real file:
-
-```caddy
-mn4x4.org {
-    root * /path/to/dist
-    try_files {path} /index.html
-    file_server
-}
-```
+- [x] Caddy points at the new `dist/` output
+- [x] React Router catch-all rewrite in place (SPA routes resolve)
+- [x] HTTPS working
+- [x] Behind Cloudflare via a `cloudflared` tunnel — origin IP is not exposed,
+      so edge caching / DDoS features come "for free" from Cloudflare's side
 
 ---
 
-## 🟡 Events — Robust Overhaul
+## ✅ Infrastructure — Cloudflare — DONE
 
-This is the biggest near-term feature. See detailed breakdown below.
+Resolved the earlier "⬜ research" item. The site sits behind Cloudflare via a
+`cloudflared` tunnel. Origin IP is hidden; no inbound ports exposed on the home server.
 
-### Current state
-Static TypeScript data file (`src/data/events.ts`) with 6 hand-written annual runs.
-No real dates, no external sources, no way for the public to add events.
-
----
-
-### Phase 1 — MN4WD Association Calendar Import
-
-**Goal:** Pull events from the [MN4WD Association calendar](https://mn4wd.org) automatically
-so club members see regional events alongside club-specific runs.
-
-#### Research needed ⬜
-- [ ] Determine what the MN4WD site exposes:
-  - Do they publish an **iCal / `.ics` feed**? (most common for club sites — check for a
-    "Subscribe" or "Export" button on their events page)
-  - Do they run WordPress with a calendar plugin (The Events Calendar, etc.)? If so,
-    a `/wp-json/tribe/events/v1/events` REST endpoint may be available.
-  - Fallback: periodic HTML scrape (fragile — last resort)
-- [ ] Confirm licensing/ToS — is automated consumption of their calendar acceptable?
-  Consider reaching out to MN4WD directly.
-
-#### Implementation options (choose after research)
-
-| Option | Pros | Cons |
-|--------|------|------|
-| **A — Build-time fetch** (iCal/API → baked into static JS) | Zero runtime cost, no backend | Stale between deploys; needs scheduled rebuild (cron → `npm run build`) |
-| **B — Runtime fetch in browser** (iCal/API → fetched by React) | Always fresh | CORS may block direct fetch; needs a small proxy |
-| **C — Backend sync job** (cron job → writes to JSON → static site reads it) | Decoupled, easy to cache | Needs server-side process |
-
-**Recommendation:** Start with **Option A** (build-time) using a simple Node fetch script.
-Add a GitHub Actions / cron-triggered rebuild to keep it fresh. Graduate to Option C if
-the site gains a backend for event submissions anyway.
-
-#### Tasks
-- [ ] Spike: fetch MN4WD calendar and inspect format
-- [ ] Write `scripts/fetch-mn4wd-events.ts` — fetches, parses, and writes to
-  `src/data/mn4wd-events.json`
-- [ ] Update `EventCard` / Events page to display MN4WD events in a separate section
-  with clear attribution ("via MN4WD Association")
-- [ ] Add MN4WD events to the `ClubEvent` interface with a `source` field
-  (`'club' | 'mn4wd' | 'community'`)
-- [ ] Set up automated rebuild (cron or CI job) so the calendar stays current
-- [ ] Filter/de-duplicate events that appear in both club and MN4WD calendars
+Remaining optional tuning (🟢, only if traffic warrants):
+- [ ] Confirm/enable Cache Rules for `dist/` static assets at the edge
+- [ ] Bot Fight Mode (free tier) if scrapers become a nuisance
 
 ---
 
-### Phase 2 — Community Event Submissions
+## ✅ Events — Resolved (manual curation, no backend)
 
-**Goal:** Allow any member to submit an event for consideration. Submitted events appear
-on the site after admin approval.
+The big "Events overhaul" from the old roadmap was **descoped**. What actually happened:
 
-#### Architecture decision ⬜
+- Events are **hand-curated** in `src/data/events.ts` (real club + regional runs,
+  with real dates pulled from the MN4WDA calendar manually).
+- Events are sorted by date at export time; past events are hidden from the
+  homepage featured runs while the Events page shows the full schedule.
 
-The site is currently a **fully static SPA** — there is no backend.
-A submission form requires at minimum an endpoint to receive POST requests.
+Decisions:
+- ❌ **Automated MN4WD calendar sync — not pursued.** No fetch script / no
+  `mn4wd-events.json` / no `source` field. Manual curation is good enough for the
+  volume of events the club runs. (Revisit only if event count grows a lot.)
+- ❌ **Community event submissions — not pursued.** No public submission flow and
+  no plan to add one; this keeps the site fully static with no backend to run.
 
-| Option | Complexity | Cost | Notes |
-|--------|-----------|------|-------|
-| **Formspree / EmailJS** | Low | Free tier | Submissions arrive as email; admin manually adds to data file. No moderation UI. |
-| **Serverless function** (Cloudflare Workers / Netlify / Vercel) | Medium | Free tier | Can write to KV store or forward to email; no persistent DB |
-| **Lightweight Node API on existing server** | Medium | Free (same host) | Full control; can store pending events in SQLite or flat JSON; admin approval endpoint |
-| **Headless CMS** (Sanity, Contentful) | Medium | Free tier | Rich admin UI for content editors; overkill for now |
-
-**Recommendation:** Start with a **lightweight Node/Express API on the existing server**
-(already running Caddy). SQLite for pending + approved events. This also unlocks the
-MN4WD sync job in one place. Long-term this becomes the site's backend.
-
-#### Submission form (frontend)
-- [ ] Add `/events/submit` route or modal
-- [ ] Fields: Event name, date/time, location, description, difficulty, organizer name,
-  contact email, tags, external link (optional)
-- [ ] Client-side validation (required fields, date in future, etc.)
-- [ ] Spam protection: honeypot field + rate limiting on the API
-- [ ] CAPTCHA if spam becomes an issue (hCaptcha preferred — no Google)
-- [ ] Success/error states with clear messaging
-
-#### Backend (new service)
-- [ ] `POST /api/events/submit` — accepts submission, stores as `pending`
-- [ ] Email notification to admin on new submission
-- [ ] `GET /api/events/approved` — returns approved events as JSON (consumed by frontend)
-- [ ] Admin approval endpoints (protected by token/basic auth initially)
-- [ ] Simple admin UI or CLI script for reviewing/approving/rejecting submissions
-- [ ] Data model: `id`, `source`, `status` (`pending|approved|rejected`), all event fields,
-  `submittedAt`, `submittedBy` (name + email, not public), `approvedAt`
-
-#### Events page updates
-- [ ] Show community-submitted events in their own section (below club + MN4WD events)
-- [ ] Show submitter name (not email) and a "Submitted by the community" badge
-- [ ] Link to submission form from the Events page
-- [ ] Consider a simple calendar view in addition to card grid (month/list toggle)
+> Note: the only server-side dependency is the **feedback/report feature**
+> (`ReportModal`), which posts to the shared `report-service` (see Decisions Log).
 
 ---
 
-## 🟡 Gallery — Phase 2
+## 🟡 SEO & Discoverability — OPEN (next focus)
 
-**Current state:** Placeholder stub page.
+None of this is done yet — `index.html` has no meta/OG tags and there is no
+`robots.txt` / `sitemap.xml`. This is the highest-value remaining work for a public site.
 
-- [ ] Decide on image hosting: self-hosted in `public/gallery/` vs. external CDN
-  (Cloudflare Images, Bunny, etc.) — photos can be large; CDN preferred
-- [ ] Design gallery layout: masonry grid, lightbox on click
-- [ ] Add photo upload path for admins (could tie into the backend above)
-- [ ] Tag/filter by run or year
-- [ ] Consider lazy-loading and WebP conversion at build or upload time
-- [ ] EXIF stripping before publishing (privacy — removes GPS data from photos)
-
----
-
-## 🟡 Merch — Phase 2
-
-**Current state:** "Coming soon" page.
-
-- [ ] Decide on fulfillment: print-on-demand (Printful, Printify + Shopify) vs.
-  in-house bulk order
-- [ ] If print-on-demand: integrate store widget or link out to storefront
-- [ ] If bulk: build a simple catalog page with an order/interest form
-- [ ] Design assets: ensure logo files are in vector (SVG/AI) for print use
+- [ ] Add per-page `<meta name="description">` (SPA — needs react-helmet or
+      equivalent for per-route tags, or static tags in `index.html` as a baseline)
+- [ ] Add Open Graph / Twitter Card tags — important for Facebook link previews
+      (the club's primary social channel)
+- [ ] Add `public/robots.txt` and `public/sitemap.xml`
+- [ ] Structured data (JSON-LD `Event` schema) for the events list
 
 ---
 
-## ⬜ Infrastructure — Cloudflare Protection
+## 🟡 Gallery — phase 1 built, dark behind flags
 
-**Goal:** Protect the home server's internet connection from traffic spikes using Cloudflare features.
+Phase 1 (curated event albums + member rigs showcase) is implemented behind
+`VITE_FLAG_GALLERY` / `VITE_FLAG_RIGS` (default off — prod still shows the stub).
+Plan: `~/.claude/plans/i-like-your-read-quirky-matsumoto.md`.
 
-- [ ] Research Cloudflare rate limiting rules (free vs. paid tier limits)
-- [ ] Evaluate other relevant Cloudflare options:
-  - **Under Attack Mode** — instant on/off for DDoS situations
-  - **Page Rules / Cache Rules** — cache static assets at the edge to reduce origin hits
-  - **Browser Integrity Check** — drop obviously bad bots
-  - **IP Access Rules** — geo-block or allow-list if needed
-  - **Bot Fight Mode** — available on free plan
-  - **Cloudflare Tunnel** (`cloudflared`) — hides origin IP entirely; worth evaluating
-- [ ] Decide on caching strategy for `dist/` assets vs. dynamic API routes (once backend exists)
-- [ ] Document chosen Cloudflare settings in `docs/infrastructure.md` so they can be reproduced
+- [x] Decide image hosting: **self-hosted at `/var/www/mn4x4/photos` (outside the
+      repo) + Cloudflare Image Transformations** (free tier) for resize/WebP/edge
+      cache — repo carries no content binaries, $0/mo
+- [x] Layout: album grid + lightbox (`yet-another-react-lightbox`), rigs page styled
+      like the About board cards
+- [x] Lazy-loading + CSS aspect-ratio (edge serves WebP/AVIF via `format=auto`)
+- [x] EXIF stripping (privacy — removes GPS data): `scripts/add-photo.sh` auto-orients
+      and strips before files reach the web root; `metadata=none` on delivery as backup
+- [ ] **To go live:** enable Image Transformations for the zone (dashboard → Images),
+      create `/var/www/mn4x4/photos` + add the Caddy `/photos/*` handler, ingest board
+      photos + first album, switch `club.ts` board photos to filenames + delete
+      `public/board/*.webp`, flip flags
+- [ ] Tag/filter by run or year — once content exists
+- [ ] Masonry layout — nice-to-have
+
+---
+
+## 🟡 Merch — still a stub
+
+`src/pages/Merch.tsx` is a "Coming Soon" placeholder linking to Facebook.
+
+- [ ] Decide fulfillment: print-on-demand (Printful/Printify) vs. in-house bulk order
+- [ ] If POD: integrate store widget or link out to storefront
+- [ ] If bulk: catalog page + order/interest form
+- [ ] Ensure logo files exist in vector (SVG/AI) for print
+
+---
+
+## 🟢 About page — flagged sections to finish & enable
+
+Three About sections are **built but gated off** via `src/config/flags.ts`
+(`VITE_FLAG_ABOUT_*`, default OFF). Content exists in `src/data/club.ts`.
+
+- [ ] "Our History" (`aboutHistory`) — review copy, then enable
+- [ ] "Milestones" timeline (`aboutMilestones`) — dates/events are placeholder-ish; verify before enabling
+- [ ] "What Drives Us" / Core Values (`aboutValues`) — review copy, then enable
+- [x] Board / leadership section with bios + photos — **live**
 
 ---
 
 ## 🟢 General Site Improvements
 
-### Content
-- [ ] Fill in real event dates and locations as they are confirmed
-- [ ] Replace placeholder "TBD" location text throughout events data
-- [ ] Add real member bios / leadership section to About page
-- [ ] Add a trail conditions or run report section (post-event write-ups)
+### Content (mostly done)
+- [x] Real event dates and locations in `events.ts`
+- [x] Real leadership/board bios on About
+- [ ] Trail conditions / run report section (post-event write-ups) — not started
 
-### SEO & Discoverability
-- [ ] Add `<meta>` description tags per page
-- [ ] Add Open Graph / Twitter Card tags (for Facebook link previews — relevant for
-  the club's primary social channel)
-- [ ] Add `sitemap.xml` and `robots.txt`
-- [ ] Structured data (JSON-LD) for events (`Event` schema) — improves Google visibility
-
-### Performance & Quality
-- [ ] Audit Lighthouse scores after deployment
+### Performance & Quality — OPEN
+- [ ] Audit Lighthouse scores in production
 - [ ] Optimize hero images (WebP, explicit width/height to prevent CLS)
-- [ ] Add `ErrorBoundary` component for graceful runtime error handling
-- [ ] Add basic analytics (privacy-respecting — Plausible or self-hosted Umami;
-  no Google Analytics)
+- [ ] Add an `ErrorBoundary` for graceful runtime error handling — not present
+- [ ] Privacy-respecting analytics (Plausible or self-hosted Umami; no Google) — not present
 
-### Accessibility
-- [ ] Audit color contrast ratios (red-on-dark especially)
-- [ ] Ensure all interactive elements are keyboard-navigable
-- [ ] Add `aria-label` to icon-only buttons/links
-- [ ] Test with a screen reader
+### Accessibility — OPEN
+- [ ] Audit color contrast (red-on-dark especially)
+- [ ] Keyboard-navigability pass on all interactive elements
+- [ ] `aria-label` on icon-only buttons/links
+- [ ] Screen-reader test
 
-### Developer Experience
-- [ ] Add `prettier` config for consistent formatting
-- [ ] Set up CI (GitHub Actions): lint + build on every push
-- [ ] Write a proper `README.md` for local dev setup
+### Developer Experience — OPEN
+- [ ] Add a `prettier` config (none exists)
+- [ ] Set up CI (GitHub Actions): lint + build on push (no `.github/` yet)
+- [x] README covers local dev setup
 
 ---
 
@@ -219,5 +156,8 @@ MN4WD sync job in one place. Long-term this becomes the site's backend.
 | 2026-05-17 | Static React/TS/Vite, Bootstrap mostly unused | Established in previous session |
 | 2026-05-17 | Brand palette: red `#D42B2B`, blue `#3050C8`, dark bg | Pulled from logo |
 | 2026-05-17 | Gallery and Merch deferred to phase 2 | Content/logistics not ready |
-| 2026-05-17 | Events backend: lightweight Node API recommended | Needed for submissions + MN4WD sync |
 | 2026-05-17 | Feedback uses shared `report-service` (irc project) | Already running on server; `projects.json` has `mn4x4` entry pointing to `#4x4-brothers` room |
+| 2026-06-07 | Site is live; served from `dist/` via Caddy behind a Cloudflare `cloudflared` tunnel | Launch complete; origin IP hidden, no inbound ports exposed |
+| 2026-06-07 | **Automated MN4WD calendar sync — dropped.** Events curated by hand in `events.ts` | Manual curation is sufficient for current event volume; avoids standing up a backend |
+| 2026-06-07 | **Community event submissions — dropped.** | Keeps the site fully static; no backend to maintain |
+| 2026-06-07 | About History/Milestones/Values kept behind feature flags | Copy not finalized; shipped board section only |

@@ -1,0 +1,113 @@
+/* ── Rigs page — member builds (mirrors the About board cards) ─ */
+
+.rigs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 480px) {
+  .rigs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .rigs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.rig-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--color-red);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.rig-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.rig-card-photo-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.rig-card-photo-button:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: -3px;
+}
+
+.rig-card-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.rig-card-body {
+  padding: 1.25rem;
+}
+
+.rig-card-owner {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  margin: 0 0 0.3rem;
+}
+
+.rig-card-vehicle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-dark);
+  margin: 0 0 0.6rem;
+}
+
+.rig-spec-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0 0 0.75rem;
+}
+
+.rig-spec {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.rig-spec dt {
+  font-weight: 700;
+  color: var(--color-dark);
+}
+.rig-spec dd {
+  margin: 0;
+  color: #374151;
+  text-align: right;
+}
+
+.rig-card-story {
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Empty state */
+.rigs-empty {
+  text-align: center;
+}
+.rigs-empty-text {
+  color: var(--color-muted);
+  max-width: 500px;
+  margin: 0 auto var(--space-md);
+}

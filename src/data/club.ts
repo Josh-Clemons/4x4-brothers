@@ -1,3 +1,51 @@
+export interface BoardMember {
+  name: string
+  role: string
+  bio: string
+  /**
+   * Board photo filename, served from mn4x4.org/photos/ via src/lib/photos.ts
+   * (ingest: scripts/add-photo.sh). '' = placeholder avatar.
+   */
+  photo: string
+  /** Optional object-position override for the 4:3 cover crop, e.g. 'top'. */
+  photoPosition?: string
+}
+
+const board: BoardMember[] = [
+  {
+    name:  'Matt Clemons',
+    role:  'President',
+    bio:   'Once commanded a riding mower chariot while wearing a bucket on my head.',
+    photo: 'board-matt.webp',
+  },
+  {
+    name:  'Kyle Quitter',
+    role:  'Vice President',
+    bio:   'Makes poor line choices with excellent commitment.',
+    photo: 'board-kyle.webp',
+    // Anchor to the top so the cover-crop trims from the bottom
+    photoPosition: 'top',
+  },
+  {
+    name:  'Dusty Winegar',
+    role:  'Board Member',
+    bio:   'Wheeling since before I was born.',
+    photo: 'board-dusty.webp',
+  },
+  {
+    name:  'Joe Heinonen',
+    role:  'Board Member',
+    bio:   'Bio coming soon.',
+    photo: '',
+  },
+  {
+    name:  'Stephanie Guzzy',
+    role:  'Treasurer',
+    bio:   'Go Vikings!',
+    photo: 'board-steph.webp',
+  },
+]
+
 const club = {
   name: 'Minnesota 4x4 Brothers',
   shortName: 'MN 4x4 Brothers',
@@ -53,38 +101,7 @@ const club = {
     ctaText: 'Follow us on Facebook — that\'s where run details and meet-up times get posted.',
   },
 
-  board: [
-    {
-      name:  'Matt Clemons',
-      role:  'President',
-      bio:   'Once commanded a riding mower chariot while wearing a bucket on my head.',
-      photo: '/board/presidnt.webp' as string,
-    },
-    {
-      name:  'Kyle Quitter',
-      role:  'Vice President',
-      bio:   'Makes poor line choices with excellent commitment.',
-      photo: '/board/kyle.webp' as string,
-    },
-    {
-      name:  'Dusty Winegar',
-      role:  'Board Member',
-      bio:   'Wheeling since before I was born.',
-      photo: '/board/dusty.webp' as string,
-    },
-    {
-      name:  'Joe Heinonen',
-      role:  'Board Member',
-      bio:   'Bio coming soon.',
-      photo: '' as string,
-    },
-    {
-      name:  'Stephanie Guzzy',
-      role:  'Treasurer',
-      bio:   'Go Vikings!',
-      photo: '/board/steph.webp' as string,
-    },
-  ],
+  board,
 
   social: {
     facebook: 'https://www.facebook.com/groups/253653171083360/',

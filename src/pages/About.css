@@ -146,11 +146,6 @@
   display: block;
 }
 
-/* Anchor Kyle's photo to the top so the cover-crop trims from the bottom */
-.board-card-photo[src="/board/kyle.webp"] {
-  object-position: top;
-}
-
 .board-card-photo-placeholder {
   width: 100%;
   aspect-ratio: 4 / 3;

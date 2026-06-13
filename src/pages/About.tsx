@@ -1,5 +1,6 @@
 import club from '../data/club'
 import { flags } from '../config/flags'
+import { photoUrl } from '../lib/photos'
 import '../styles/theme.css'
 import './About.css'
 
@@ -68,9 +69,11 @@ export default function About() {
               <div key={i} className="board-card">
                 {member.photo ? (
                   <img
-                    src={member.photo}
+                    src={photoUrl(member.photo, 'card')}
                     alt={member.name}
                     className="board-card-photo"
+                    style={member.photoPosition ? { objectPosition: member.photoPosition } : undefined}
+                    loading="lazy"
                   />
                 ) : (
                   <div className="board-card-photo-placeholder" aria-hidden="true">

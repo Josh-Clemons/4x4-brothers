@@ -7,6 +7,9 @@ import Events  from './pages/Events'
 import About   from './pages/About'
 import Merch   from './pages/Merch'
 import Gallery from './pages/Gallery'
+import Album   from './pages/Album'
+import Rigs    from './pages/Rigs'
+import { flags } from './config/flags'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -19,6 +22,8 @@ const router = createBrowserRouter([
       { path: 'about',      element: <About />   },
       { path: 'merch',      element: <Merch />   },
       { path: 'gallery',    element: <Gallery /> },
+      ...(flags.galleryEnabled ? [{ path: 'gallery/:albumId', element: <Album /> }] : []),
+      ...(flags.rigsEnabled    ? [{ path: 'rigs',             element: <Rigs />  }] : []),
     ],
   },
 ])

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../assets/4x4-brothers-words-only.jpg'
+import { flags } from '../config/flags'
 import '../styles/theme.css'
 import './Navbar.css'
 
@@ -10,6 +11,7 @@ const navLinks = [
   { to: '/about',   label: 'About'  },
   { to: '/merch',   label: 'Merch'  },
   { to: '/gallery', label: 'Gallery'},
+  ...(flags.rigsEnabled ? [{ to: '/rigs', label: 'Rigs' }] : []),
 ]
 
 export default function Navbar({ onOpenReport }: { onOpenReport: () => void }) {
