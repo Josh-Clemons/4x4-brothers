@@ -169,6 +169,13 @@ Concrete enough to pick up cold. Not yet implemented. Open questions resolved
 ---
 
 ## Changelog
+- 2026-07-03 — **Context handoff added** (irc repo, `report-service`): skipping
+  the investigation also meant photo submissions never entered the bridge's
+  open set, so Josh's reply to a card reached the agent with no context. The
+  service now writes a handoff row (submission details wrapped in
+  `<external-submission>`, via the investigation-results DB columns) at
+  submission time; the bridge's existing reply flow attaches it. The URL still
+  only reaches an agent after Josh's deliberate reply — no automatic fetching.
 - 2026-06-13 — Initial capture of the option space + phasing; Phase A chosen as start.
 - 2026-07-03 — **Phase A implemented** (not yet deployed). Site:
   `SubmitPhotosModal` + hero buttons on Gallery/Rigs behind
