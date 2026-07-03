@@ -41,6 +41,25 @@ const rigs: Rig[] = [
       'rig-josh-04.jpg',
     ],
   },
+  {
+    id: 'josh-tanya',
+    owner: 'Josh C.',
+    vehicle: '\'90 Geo Tracker',
+    specs: [
+      { label: 'Name', value: 'Tanya' },
+      { label: 'Engine', value: '5.3L LS' },
+      { label: 'Trans', value: '4L60E' },
+      { label: 'T-case', value: 'Doubler + NP205' },
+      { label: 'Axles', value: 'Super Duty front and rear' },
+    ],
+    story:
+      'An in-progress build: a \'90 Geo Tracker body dropped onto a custom ' +
+      'frame and suspension setup.',
+    photos: [
+      'rig-josh-tanya-01.jpg',
+      'rig-josh-tanya-02.jpg',
+    ],
+  },
 ]
 
 export default rigs
