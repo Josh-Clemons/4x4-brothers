@@ -24,6 +24,9 @@
   max-width: 620px;
   line-height: 1.7;
 }
+.page-hero-cta {
+  margin-top: 1.5rem;
+}
 
 /* Section label (small eyebrow text) */
 .section-label {

@@ -100,6 +100,24 @@ Plan: `~/.claude/plans/i-like-your-read-quirky-matsumoto.md`.
 
 ---
 
+## 🟢 Photo submissions — Phase A built, pending deploy
+
+Letting visitors/members submit their own photos for the gallery/rigs, with Josh
+approving each before publish. Full option space + trade-offs + phasing in
+[`docs/photo-submissions.md`](docs/photo-submissions.md).
+
+- Phased plan: **A** link submission (reuses `report-service`, no binary intake) →
+  **B** staged upload → **C** agent-assisted prep → (**D** third-party intake as alt).
+- [x] **Phase A built (2026-07-03):** `SubmitPhotosModal` + hero buttons on
+      Gallery/Rigs behind `VITE_FLAG_PHOTO_SUBMIT`; `report-service` accepts
+      `photo_submission` (link + consent, dedicated Matrix card, no agent
+      investigation). Josh fetches + ingests via `scripts/add-photo.sh` manually.
+- [ ] **Deploy:** restart `report-service` (irc repo) first, then ship a site
+      build with `VITE_FLAG_PHOTO_SUBMIT=true`.
+- [ ] Phase B+ deferred until Phase A shows real demand.
+
+---
+
 ## 🟡 Merch — still a stub
 
 `src/pages/Merch.tsx` is a "Coming Soon" placeholder linking to Facebook.

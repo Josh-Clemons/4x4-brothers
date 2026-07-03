@@ -60,6 +60,20 @@
   padding: 1.5rem;
 }
 
+/* Intro / guidelines copy (photo submissions) */
+.report-intro {
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+  color: #d1d5db;
+  line-height: 1.6;
+}
+.report-guidelines {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  line-height: 1.6;
+}
+
 /* Form fields */
 .report-field {
   display: flex;

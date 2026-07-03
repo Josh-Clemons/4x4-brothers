@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import albums from '../data/albums'
 import club from '../data/club'
 import { flags } from '../config/flags'
 import { photoUrl } from '../lib/photos'
 import { formatDate } from '../lib/dates'
+import SubmitPhotosModal from '../components/SubmitPhotosModal'
 import '../styles/theme.css'
 import './Gallery.css'
 
@@ -96,6 +98,8 @@ function ComingSoon() {
 }
 
 export default function Gallery() {
+  const [submitOpen, setSubmitOpen] = useState(false)
+
   return (
     <main>
       <section className="page-hero section-dark">
@@ -107,10 +111,21 @@ export default function Gallery() {
               Photo dumps from club runs — straight off the trail, one album per run.
             </p>
           )}
+          {flags.photoSubmitEnabled && (
+            <button
+              type="button"
+              className="btn-brand-red page-hero-cta"
+              onClick={() => setSubmitOpen(true)}
+            >
+              Submit Your Photos
+            </button>
+          )}
         </div>
       </section>
 
       {flags.galleryEnabled ? <AlbumIndex /> : <ComingSoon />}
+
+      <SubmitPhotosModal open={submitOpen} onClose={() => setSubmitOpen(false)} />
     </main>
   )
 }

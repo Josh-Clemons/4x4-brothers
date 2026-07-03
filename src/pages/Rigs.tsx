@@ -4,12 +4,15 @@ import 'yet-another-react-lightbox/styles.css'
 import rigs from '../data/rigs'
 import type { Rig } from '../data/rigs'
 import club from '../data/club'
+import { flags } from '../config/flags'
 import { photoUrl } from '../lib/photos'
+import SubmitPhotosModal from '../components/SubmitPhotosModal'
 import '../styles/theme.css'
 import './Rigs.css'
 
 export default function Rigs() {
   const [lightboxRig, setLightboxRig] = useState<Rig | null>(null)
+  const [submitOpen, setSubmitOpen] = useState(false)
 
   return (
     <main>
@@ -21,6 +24,15 @@ export default function Rigs() {
             Lifts, tires, lockers, armor — the machines that get us down the trail,
             and the build choices behind them.
           </p>
+          {flags.photoSubmitEnabled && (
+            <button
+              type="button"
+              className="btn-brand-red page-hero-cta"
+              onClick={() => setSubmitOpen(true)}
+            >
+              Submit Your Rig
+            </button>
+          )}
         </div>
       </section>
 
@@ -83,6 +95,8 @@ export default function Rigs() {
         close={() => setLightboxRig(null)}
         slides={(lightboxRig?.photos ?? []).map(file => ({ src: photoUrl(file, 'full') }))}
       />
+
+      <SubmitPhotosModal open={submitOpen} onClose={() => setSubmitOpen(false)} />
     </main>
   )
 }
