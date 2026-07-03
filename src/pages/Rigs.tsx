@@ -93,8 +93,7 @@ export default function Rigs() {
           <p className="page-hero-label">Member Builds</p>
           <h1 className="page-hero-title">The Rigs</h1>
           <p className="page-hero-subtitle">
-            Lifts, tires, lockers, armor — the machines that get us down the trail,
-            and the build choices behind them.
+            Lifts, tires, lockers - the machines we love to thrash.
           </p>
           {flags.photoSubmitEnabled && (
             <button

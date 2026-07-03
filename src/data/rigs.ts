@@ -47,9 +47,9 @@ const rigs: Rig[] = [
     vehicle: '\'90 Geo Tracker',
     specs: [
       { label: 'Name', value: 'Tanya' },
-      { label: 'Engine', value: '5.3L LS' },
-      { label: 'Trans', value: '4L60E' },
+      { label: 'Engine/Trans', value: '5.3LS/4l60E' },
       { label: 'T-case', value: 'Doubler + NP205' },
+      { label: 'Tires', value: '40" LTB' },
       { label: 'Axles', value: 'Super Duty front and rear' },
     ],
     story:
