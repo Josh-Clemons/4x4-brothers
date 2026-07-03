@@ -23,19 +23,24 @@ export interface Rig {
 }
 
 const rigs: Rig[] = [
-  // Example — uncomment and fill in once the photos are uploaded:
-  // {
-  //   id: 'dusty-tj',
-  //   owner: 'Dusty Winegar',
-  //   vehicle: '1997 Jeep TJ',
-  //   specs: [
-  //     { label: 'Lift',    value: '4" long arm' },
-  //     { label: 'Tires',   value: '35" MTs' },
-  //     { label: 'Lockers', value: 'Front + rear' },
-  //   ],
-  //   story: 'Two decades of trail seasons in one tub.',
-  //   photos: ['rig-dusty-01.jpg', 'rig-dusty-02.jpg'],
-  // },
+  {
+    id: 'josh-tina',
+    owner: 'Josh C.',
+    vehicle: 'Name: Tina',
+    specs: [
+      { label: 'Vehicle', value: "'96 Ranger on '78 Bronco chassis" },
+      { label: 'Engine',  value: '400M big block' },
+    ],
+    story:
+      'My first rig. Affectionately named Tina (from Napoleon Dynamite), ' +
+      'she was best known for making really good dinosaur noises.',
+    photos: [
+      'rig-josh-01.jpg',
+      'rig-josh-02.jpg',
+      'rig-josh-03.jpg',
+      'rig-josh-04.jpg',
+    ],
+  },
 ]
 
 export default rigs

@@ -26,10 +26,75 @@
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   transition: box-shadow var(--transition), transform var(--transition);
+  /* Whole card opens the lightbox, not just the photo */
+  cursor: pointer;
 }
 .rig-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
+}
+
+/* Photo area — inline prev/next cycling without opening the lightbox */
+.rig-card-photo-wrap {
+  position: relative;
+}
+
+.rig-card-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: var(--color-white);
+  font-size: 1.5rem;
+  line-height: 1;
+  padding-bottom: 3px; /* optically center the ‹ › glyphs */
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--transition), background-color var(--transition);
+}
+.rig-card-nav--prev { left: 0.6rem; }
+.rig-card-nav--next { right: 0.6rem; }
+.rig-card-photo-wrap:hover .rig-card-nav,
+.rig-card-nav:focus-visible {
+  opacity: 1;
+}
+.rig-card-nav:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.rig-card-nav:focus-visible {
+  outline: 3px solid var(--color-blue);
+}
+/* No hover on touch devices — keep the arrows visible */
+@media (hover: none) {
+  .rig-card-nav {
+    opacity: 1;
+  }
+}
+
+.rig-card-dots {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  pointer-events: none;
+}
+.rig-card-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  transition: background-color var(--transition);
+}
+.rig-card-dot--active {
+  background-color: var(--color-white);
 }
 
 .rig-card-photo-button {

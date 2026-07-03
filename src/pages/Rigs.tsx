@@ -10,8 +10,80 @@ import SubmitPhotosModal from '../components/SubmitPhotosModal'
 import '../styles/theme.css'
 import './Rigs.css'
 
+function RigCard({ rig, onOpenLightbox }: {
+  rig: Rig
+  onOpenLightbox: (rig: Rig, index: number) => void
+}) {
+  const [photoIndex, setPhotoIndex] = useState(0)
+  const count = rig.photos.length
+
+  const step = (delta: number) =>
+    setPhotoIndex(i => (i + delta + count) % count)
+
+  return (
+    <article className="rig-card" onClick={() => onOpenLightbox(rig, photoIndex)}>
+      <div className="rig-card-photo-wrap">
+        <button
+          type="button"
+          className="rig-card-photo-button"
+          onClick={e => { e.stopPropagation(); onOpenLightbox(rig, photoIndex) }}
+          aria-label={`View photos of ${rig.owner}'s ${rig.vehicle}`}
+        >
+          <img
+            src={photoUrl(rig.photos[photoIndex], 'card')}
+            alt={`${rig.owner}'s ${rig.vehicle}`}
+            className="rig-card-photo"
+            loading="lazy"
+          />
+        </button>
+        {count > 1 && (
+          <>
+            <button
+              type="button"
+              className="rig-card-nav rig-card-nav--prev"
+              onClick={e => { e.stopPropagation(); step(-1) }}
+              aria-label="Previous photo"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              className="rig-card-nav rig-card-nav--next"
+              onClick={e => { e.stopPropagation(); step(1) }}
+              aria-label="Next photo"
+            >
+              ›
+            </button>
+            <div className="rig-card-dots" aria-hidden="true">
+              {rig.photos.map((file, i) => (
+                <span
+                  key={file}
+                  className={`rig-card-dot${i === photoIndex ? ' rig-card-dot--active' : ''}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      <div className="rig-card-body">
+        <p className="rig-card-owner">{rig.owner}</p>
+        <h3 className="rig-card-vehicle">{rig.vehicle}</h3>
+        <dl className="rig-spec-list">
+          {rig.specs.map(spec => (
+            <div key={spec.label} className="rig-spec">
+              <dt>{spec.label}</dt>
+              <dd>{spec.value}</dd>
+            </div>
+          ))}
+        </dl>
+        {rig.story && <p className="rig-card-story">{rig.story}</p>}
+      </div>
+    </article>
+  )
+}
+
 export default function Rigs() {
-  const [lightboxRig, setLightboxRig] = useState<Rig | null>(null)
+  const [lightbox, setLightbox] = useState<{ rig: Rig; index: number } | null>(null)
   const [submitOpen, setSubmitOpen] = useState(false)
 
   return (
@@ -56,34 +128,11 @@ export default function Rigs() {
           ) : (
             <div className="rigs-grid">
               {rigs.map(rig => (
-                <article key={rig.id} className="rig-card">
-                  <button
-                    type="button"
-                    className="rig-card-photo-button"
-                    onClick={() => setLightboxRig(rig)}
-                    aria-label={`View photos of ${rig.owner}'s ${rig.vehicle}`}
-                  >
-                    <img
-                      src={photoUrl(rig.photos[0], 'card')}
-                      alt={`${rig.owner}'s ${rig.vehicle}`}
-                      className="rig-card-photo"
-                      loading="lazy"
-                    />
-                  </button>
-                  <div className="rig-card-body">
-                    <p className="rig-card-owner">{rig.owner}</p>
-                    <h3 className="rig-card-vehicle">{rig.vehicle}</h3>
-                    <dl className="rig-spec-list">
-                      {rig.specs.map(spec => (
-                        <div key={spec.label} className="rig-spec">
-                          <dt>{spec.label}</dt>
-                          <dd>{spec.value}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                    {rig.story && <p className="rig-card-story">{rig.story}</p>}
-                  </div>
-                </article>
+                <RigCard
+                  key={rig.id}
+                  rig={rig}
+                  onOpenLightbox={(r, index) => setLightbox({ rig: r, index })}
+                />
               ))}
             </div>
           )}
@@ -91,12 +140,13 @@ export default function Rigs() {
       </section>
 
       <Lightbox
-        open={lightboxRig !== null}
-        close={() => setLightboxRig(null)}
-        slides={(lightboxRig?.photos ?? []).map(file => ({ src: photoUrl(file, 'full') }))}
+        open={lightbox !== null}
+        close={() => setLightbox(null)}
+        index={lightbox?.index ?? 0}
+        slides={(lightbox?.rig.photos ?? []).map(file => ({ src: photoUrl(file, 'full') }))}
       />
 
-      <SubmitPhotosModal open={submitOpen} onClose={() => setSubmitOpen(false)} />
+      <SubmitPhotosModal variant="rigs" open={submitOpen} onClose={() => setSubmitOpen(false)} />
     </main>
   )
 }

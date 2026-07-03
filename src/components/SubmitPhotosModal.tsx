@@ -5,11 +5,13 @@ import './ReportModal.css'
 interface Props {
   open: boolean
   onClose: () => void
+  /** Tailors the details prompt to where the modal opened from. */
+  variant?: 'gallery' | 'rigs'
 }
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
-export default function SubmitPhotosModal({ open, onClose }: Props) {
+export default function SubmitPhotosModal({ open, onClose, variant = 'gallery' }: Props) {
   const location = useLocation()
 
   const [name,           setName]           = useState('')
@@ -134,7 +136,7 @@ export default function SubmitPhotosModal({ open, onClose }: Props) {
 
               <div className="report-field">
                 <label htmlFor="submit-photos-name">
-                  Name <span aria-hidden="true">*</span>
+                  Owner's Name <span aria-hidden="true">*</span>
                 </label>
                 <input
                   id="submit-photos-name"
@@ -195,7 +197,8 @@ export default function SubmitPhotosModal({ open, onClose }: Props) {
 
               <div className="report-field">
                 <label htmlFor="submit-photos-details">
-                  What are they from? <span aria-hidden="true">*</span>
+                  {variant === 'rigs' ? 'Tell us about your rig!' : 'What are they from?'}{' '}
+                  <span aria-hidden="true">*</span>
                 </label>
                 <textarea
                   id="submit-photos-details"
@@ -204,7 +207,9 @@ export default function SubmitPhotosModal({ open, onClose }: Props) {
                   required
                   maxLength={4000}
                   rows={4}
-                  placeholder="Which run or event, or whose rig — anything that helps us file them."
+                  placeholder={variant === 'rigs'
+                    ? 'Year, make, mods, the story behind it — whatever belongs on the card.'
+                    : 'Which run or event, or whose rig — anything that helps us file them.'}
                 />
               </div>
 
