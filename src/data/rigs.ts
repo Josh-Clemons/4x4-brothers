@@ -26,9 +26,9 @@ const rigs: Rig[] = [
   {
     id: 'josh-tina',
     owner: 'Josh C.',
-    vehicle: 'Name: Tina',
+    vehicle: '\'96 Ranger on \'78 Bronco chassis',
     specs: [
-      { label: 'Vehicle', value: "'96 Ranger on '78 Bronco chassis" },
+      { label: 'Name', value: "Tina" },
       { label: 'Engine',  value: '400M big block' },
     ],
     story:

@@ -136,7 +136,7 @@ export default function SubmitPhotosModal({ open, onClose, variant = 'gallery' }
 
               <div className="report-field">
                 <label htmlFor="submit-photos-name">
-                  Owner's Name <span aria-hidden="true">*</span>
+                  Your Name <span aria-hidden="true">*</span>
                 </label>
                 <input
                   id="submit-photos-name"
