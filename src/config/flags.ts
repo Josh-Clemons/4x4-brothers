@@ -27,9 +27,8 @@ export const flags = {
   /** About page — "What Drives Us" core values. */
   aboutValues: enabled(import.meta.env.VITE_FLAG_ABOUT_VALUES),
   /**
-   * Gallery — album index, /gallery/:albumId views, and "View Photos" links
-   * on event cards. Off = the live "Coming Soon" stub. The /gallery route and
-   * nav link stay up either way — only the page content is gated.
+   * Gallery — /gallery route, /gallery/:albumId views, nav/footer links, and
+   * "View Photos" links on event cards. Off = no gallery anywhere on the site.
    */
   galleryEnabled: enabled(import.meta.env.VITE_FLAG_GALLERY),
   /** Member rigs showcase — /rigs route plus its nav/footer links. */

@@ -22,10 +22,10 @@ const router = createBrowserRouter([
       ...(flags.eventsEnabled  ? [{ path: 'events',           element: <Events /> }] : []),
       { path: 'about',      element: <About />   },
       { path: 'merch',      element: <Merch />   },
-      { path: 'gallery',    element: <Gallery /> },
-      ...(flags.galleryEnabled ? [{ path: 'gallery/:albumId', element: <Album /> }] : []),
+      ...(flags.galleryEnabled ? [{ path: 'gallery',          element: <Gallery /> }] : []),
+      ...(flags.galleryEnabled ? [{ path: 'gallery/:albumId', element: <Album />   }] : []),
       ...(flags.rigsEnabled    ? [{ path: 'rigs',             element: <Rigs />  }] : []),
-      // Catch-all: unknown URLs (incl. flag-off /rigs and /gallery/:albumId)
+      // Catch-all: unknown URLs (incl. flag-off /events, /gallery, /rigs)
       // render a branded 404 with nav/footer instead of React Router's
       // bare default error page.
       { path: '*', element: <NotFound /> },

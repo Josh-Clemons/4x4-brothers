@@ -10,7 +10,7 @@ const navLinks = [
   ...(flags.eventsEnabled ? [{ to: '/events', label: 'Events' }] : []),
   { to: '/about',   label: 'About'  },
   { to: '/merch',   label: 'Merch'  },
-  { to: '/gallery', label: 'Gallery'},
+  ...(flags.galleryEnabled ? [{ to: '/gallery', label: 'Gallery' }] : []),
   ...(flags.rigsEnabled ? [{ to: '/rigs', label: 'Rigs' }] : []),
 ]
 

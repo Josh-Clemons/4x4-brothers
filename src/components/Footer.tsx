@@ -23,7 +23,7 @@ export default function Footer({ onOpenReport }: { onOpenReport: () => void }) {
           {flags.eventsEnabled && <Link to="/events" className="footer-link">Events</Link>}
           <Link to="/about"   className="footer-link">About</Link>
           <Link to="/merch"   className="footer-link">Merch</Link>
-          <Link to="/gallery" className="footer-link">Gallery</Link>
+          {flags.galleryEnabled && <Link to="/gallery" className="footer-link">Gallery</Link>}
           {flags.rigsEnabled && <Link to="/rigs" className="footer-link">Rigs</Link>}
         </nav>
 

@@ -72,31 +72,6 @@ function AlbumIndex() {
   )
 }
 
-function ComingSoon() {
-  return (
-    <section className="section section-light">
-      <div className="content-container" style={{ textAlign: 'center' }}>
-        <div style={{ fontSize: '3rem', marginBottom: '1rem' }} aria-hidden="true">📷</div>
-        <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', marginBottom: '1rem' }}>
-          Photos Coming Soon
-        </h2>
-        <p style={{ color: 'var(--color-muted)', maxWidth: '500px', margin: '0 auto 2rem' }}>
-          We're putting together a gallery of trail photos from past runs.
-          In the meantime, check out our Facebook group for photos and videos.
-        </p>
-        <a
-          href={club.social.facebook}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-brand-red"
-        >
-          View Photos on Facebook
-        </a>
-      </div>
-    </section>
-  )
-}
-
 export default function Gallery() {
   const [submitOpen, setSubmitOpen] = useState(false)
 
@@ -106,11 +81,9 @@ export default function Gallery() {
         <div className="content-container">
           <p className="page-hero-label">Trail Photos</p>
           <h1 className="page-hero-title">Gallery</h1>
-          {flags.galleryEnabled && (
-            <p className="page-hero-subtitle">
-              Photo dumps from club runs — straight off the trail, one album per run.
-            </p>
-          )}
+          <p className="page-hero-subtitle">
+            Photo dumps from club runs — straight off the trail, one album per run.
+          </p>
           {flags.photoSubmitEnabled && (
             <button
               type="button"
@@ -123,7 +96,7 @@ export default function Gallery() {
         </div>
       </section>
 
-      {flags.galleryEnabled ? <AlbumIndex /> : <ComingSoon />}
+      <AlbumIndex />
 
       <SubmitPhotosModal open={submitOpen} onClose={() => setSubmitOpen(false)} />
     </main>
