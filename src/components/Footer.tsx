@@ -20,7 +20,7 @@ export default function Footer({ onOpenReport }: { onOpenReport: () => void }) {
         <nav className="footer-nav" aria-label="Footer navigation">
           <p className="footer-nav-heading">Pages</p>
           <Link to="/"        className="footer-link">Home</Link>
-          <Link to="/events"  className="footer-link">Events</Link>
+          {flags.eventsEnabled && <Link to="/events" className="footer-link">Events</Link>}
           <Link to="/about"   className="footer-link">About</Link>
           <Link to="/merch"   className="footer-link">Merch</Link>
           <Link to="/gallery" className="footer-link">Gallery</Link>

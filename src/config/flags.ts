@@ -3,6 +3,7 @@
 // Flags default OFF. Enable one by setting the matching env var to "true"
 // (e.g. in .env.local or the build environment):
 //
+//   VITE_FLAG_EVENTS=true
 //   VITE_FLAG_ABOUT_HISTORY=true
 //   VITE_FLAG_ABOUT_MILESTONES=true
 //   VITE_FLAG_ABOUT_VALUES=true
@@ -14,6 +15,11 @@
 const enabled = (value: string | undefined): boolean => value === 'true'
 
 export const flags = {
+  /**
+   * Events — /events route, nav/footer links, and the Home page hero CTA +
+   * "Upcoming Runs" teaser. Off = no event content anywhere on the site.
+   */
+  eventsEnabled: enabled(import.meta.env.VITE_FLAG_EVENTS),
   /** About page — "Our History" section. */
   aboutHistory: enabled(import.meta.env.VITE_FLAG_ABOUT_HISTORY),
   /** About page — "Milestones" timeline. */

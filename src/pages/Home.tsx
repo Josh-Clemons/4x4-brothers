@@ -3,6 +3,7 @@ import clubLogo from '../assets/4x4-brothers.jpg'
 import EventCard from '../components/EventCard'
 import events from '../data/events'
 import club from '../data/club'
+import { flags } from '../config/flags'
 import '../styles/theme.css'
 import './Home.css'
 
@@ -30,7 +31,9 @@ export default function Home() {
           />
           <p className="hero-tagline">{club.tagline}</p>
           <div className="hero-actions">
-            <Link to="/events" className="btn-brand-red">See Our Events</Link>
+            {flags.eventsEnabled && (
+              <Link to="/events" className="btn-brand-red">See Our Events</Link>
+            )}
             <a
               href={club.social.facebook}
               target="_blank"
@@ -55,20 +58,22 @@ export default function Home() {
       </section>
 
       {/* ── Upcoming Events teaser ────────────────────────────── */}
-      <section className="section home-events-section">
-        <div className="content-container">
-          <h2 className="home-section-heading">Upcoming Runs</h2>
-          <hr className="brand-divider" />
-          <div className="home-events-grid">
-            {featuredEvents.map(event => (
-              <EventCard key={event.id} event={event} />
-            ))}
+      {flags.eventsEnabled && (
+        <section className="section home-events-section">
+          <div className="content-container">
+            <h2 className="home-section-heading">Upcoming Runs</h2>
+            <hr className="brand-divider" />
+            <div className="home-events-grid">
+              {featuredEvents.map(event => (
+                <EventCard key={event.id} event={event} />
+              ))}
+            </div>
+            <div className="home-events-cta">
+              <Link to="/events" className="btn-brand-red">View All Events</Link>
+            </div>
           </div>
-          <div className="home-events-cta">
-            <Link to="/events" className="btn-brand-red">View All Events</Link>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── Join CTA ──────────────────────────────────────────── */}
       <section className="section section-dark home-join">

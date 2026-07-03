@@ -7,7 +7,7 @@ import './Navbar.css'
 
 const navLinks = [
   { to: '/',        label: 'Home'   },
-  { to: '/events',  label: 'Events' },
+  ...(flags.eventsEnabled ? [{ to: '/events', label: 'Events' }] : []),
   { to: '/about',   label: 'About'  },
   { to: '/merch',   label: 'Merch'  },
   { to: '/gallery', label: 'Gallery'},

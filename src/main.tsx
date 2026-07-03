@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true,        element: <Home />    },
-      { path: 'events',     element: <Events />  },
+      ...(flags.eventsEnabled  ? [{ path: 'events',           element: <Events /> }] : []),
       { path: 'about',      element: <About />   },
       { path: 'merch',      element: <Merch />   },
       { path: 'gallery',    element: <Gallery /> },
