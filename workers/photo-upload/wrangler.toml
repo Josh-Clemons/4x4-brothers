@@ -1,0 +1,15 @@
+name = "photo-upload"
+main = "src/index.ts"
+compatibility_date = "2026-07-01"
+
+routes = [
+  { pattern = "mn4x4.org/api/photo-upload*", zone_name = "mn4x4.org" }
+]
+
+[[r2_buckets]]
+binding = "SUBMISSIONS"
+bucket_name = "mn4x4-photo-submissions"
+
+# Secrets (set with `npx wrangler secret put <NAME>`, never in this file):
+#   TURNSTILE_SECRET_KEY  — from the Turnstile widget (dash → Turnstile)
+#   UPLOAD_TICKET_SECRET  — random 32-byte hex for HMAC-signing upload tickets

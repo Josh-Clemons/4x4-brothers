@@ -26,3 +26,8 @@ dist-ssr
 # bots
 .pi
 .claude
+
+# tsc -b artifacts (tsconfig.node.json is composite; vite must load vite.config.ts, not a stale .js)
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts

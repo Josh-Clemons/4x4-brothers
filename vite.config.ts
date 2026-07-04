@@ -10,6 +10,10 @@ export default defineConfig({
         target: 'http://127.0.0.1:7823',
         rewrite: path => path.replace(/^\/api\/report/, '/report'),
       },
+      // photo-upload Worker (workers/photo-upload) via `wrangler dev`
+      '/api/photo-upload': {
+        target: 'http://127.0.0.1:8787',
+      },
     },
   },
 })

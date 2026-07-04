@@ -168,7 +168,53 @@ Concrete enough to pick up cold. Not yet implemented. Open questions resolved
 
 ---
 
+## Phase A.5 — direct-to-R2 upload (built 2026-07-04)
+
+Direct upload from the submit form **without any binaries touching the home
+server** — supersedes Phase B (same UX win, none of the on-server binary
+handling, so B is now obsolete). Bytes go to a **private Cloudflare R2
+quarantine bucket** via a Cloudflare Worker on the zone:
+
+```
+Browser (SubmitPhotosModal)
+  ├─ 1. Turnstile widget → token
+  ├─ 2. POST mn4x4.org/api/photo-upload/session {token} → Worker verifies via
+  │      siteverify, returns HMAC-signed upload ticket (15 min)
+  ├─ 3. POST /api/photo-upload/file (×N, raw bytes) → Worker checks ticket,
+  │      size ≤20 MB, magic bytes (jpeg/png/webp/heic) → R2 → {key}
+  └─ 4. POST /api/report {type: photo_submission, photoKeys: [...]}
+         → report-service → SQLite audit row + 📸 Matrix card (unchanged)
+Josh approves → scripts/fetch-submission.sh <keys> → add-photo.sh → deploy
+```
+
+- **Worker:** `workers/photo-upload/` in this repo (route
+  `mn4x4.org/api/photo-upload*` — same-origin, intercepts before the tunnel).
+  Secrets: `TURNSTILE_SECRET_KEY`, `UPLOAD_TICKET_SECRET`.
+- **Bucket:** `mn4x4-photo-submissions` — private, nothing serves from it,
+  60-day lifecycle delete. Worst-case abuse is quota, not security.
+- **Limits:** 10 photos / 20 MB each per submission; Turnstile gates the
+  session endpoint; a WAF rate-limit rule covers `/api/photo-upload*`
+  (the Worker is stateless, so per-ticket file count is client-enforced).
+- **Frontend:** upload is the primary path; "paste a link" stays as a
+  collapsed fallback. If `VITE_TURNSTILE_SITE_KEY` is unset at build time the
+  modal degrades to the Phase A link-only form.
+- **report-service:** new optional `photoKeys` field (≤10 keys matching
+  `^submissions/…`); requires `photoUrl` or `photoKeys`; keys are stored in
+  `photo_keys` (JSON) and shown on the Matrix card. Link-only submissions are
+  unchanged.
+- **Retrieval:** `scripts/fetch-submission.sh <key>...` pulls approved
+  uploads via wrangler into `~/photo-submissions/`; then `add-photo.sh`
+  re-encodes and strips EXIF as always. Fetching stays a deliberate human
+  step — keys (not URLs) reach the agent handoff, and nothing fetches
+  automatically.
+
+---
+
 ## Changelog
+- 2026-07-04 — **Phase A.5 implemented** (see section above): photo-upload
+  Worker + private R2 quarantine bucket, Turnstile-gated direct upload in
+  `SubmitPhotosModal` with link fallback, `photoKeys` support in
+  report-service, `scripts/fetch-submission.sh`. Phase B declared obsolete.
 - 2026-07-03 — **Context handoff added** (irc repo, `report-service`): skipping
   the investigation also meant photo submissions never entered the bridge's
   open set, so Josh's reply to a card reached the agent with no context. The

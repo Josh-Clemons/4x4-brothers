@@ -36,7 +36,10 @@ export const flags = {
   /**
    * "Submit Photos" buttons on the Gallery/Rigs heroes + the submission
    * modal. Keep off until report-service accepts type 'photo_submission'
-   * (see docs/photo-submissions.md), or submissions will 400.
+   * (see docs/photo-submissions.md), or submissions will 400. Direct upload
+   * additionally needs the photo-upload Worker deployed and
+   * VITE_TURNSTILE_SITE_KEY set; without the key the modal falls back to the
+   * link-only form.
    */
   photoSubmitEnabled: enabled(import.meta.env.VITE_FLAG_PHOTO_SUBMIT),
 } as const
