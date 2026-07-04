@@ -3,7 +3,8 @@ main = "src/index.ts"
 compatibility_date = "2026-07-01"
 
 routes = [
-  { pattern = "mn4x4.org/api/photo-upload*", zone_name = "mn4x4.org" }
+  { pattern = "mn4x4.org/api/photo-upload*", zone_name = "mn4x4.org" },
+  { pattern = "preview.mn4x4.org/api/photo-upload*", zone_name = "mn4x4.org" }
 ]
 
 [[r2_buckets]]
