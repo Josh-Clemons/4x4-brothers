@@ -33,8 +33,9 @@ for key in "$@"; do
   mkdir -p "$outdir"
   outfile="$outdir/$(basename "$key")"
   echo "→ $key"
-  # Run from the worker dir so wrangler resolves the account from wrangler.toml
-  (cd "$WORKER_DIR" && npx wrangler r2 object get "$BUCKET/$key" --file "$outfile")
+  # Run from the worker dir so wrangler resolves the account from wrangler.toml.
+  # --remote: without it wrangler reads the local dev simulator, not the real bucket.
+  (cd "$WORKER_DIR" && npx wrangler r2 object get "$BUCKET/$key" --remote --file "$outfile")
 done
 
 echo
